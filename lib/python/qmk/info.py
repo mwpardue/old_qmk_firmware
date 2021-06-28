@@ -207,7 +207,7 @@ def _extract_split(info_data, config_c):
             info_data['split'] = {}
 
         if 'primary' in info_data['split']:
-            _log_warning(info_data, 'Split primary hand is specified in both config.h (SPLIT_HAND_PIN) and info.json (split.primary) (Value: %s), the config.h value wins.')
+            _log_warning(info_data, 'Split primary hand is specified in both config.h (SPLIT_HAND_PIN) and info.json (split.primary) (Value: %s), the config.h value wins.' % info_data['split']['primary'])
 
         info_data['split']['primary'] = 'pin'
 
@@ -216,7 +216,7 @@ def _extract_split(info_data, config_c):
             info_data['split'] = {}
 
         if 'primary' in info_data['split']:
-            _log_warning(info_data, 'Split primary hand is specified in both config.h (SPLIT_HAND_MATRIX_GRID) and info.json (split.primary) (Value: %s), the config.h value wins.')
+            _log_warning(info_data, 'Split primary hand is specified in both config.h (SPLIT_HAND_MATRIX_GRID) and info.json (split.primary) (Value: %s), the config.h value wins.' % info_data['split']['primary'])
 
         info_data['split']['primary'] = 'matrix_grid'
         info_data['split']['matrix_grid'] = _extract_pins(config_c['SPLIT_HAND_MATRIX_GRID'])
@@ -226,7 +226,7 @@ def _extract_split(info_data, config_c):
             info_data['split'] = {}
 
         if 'primary' in info_data['split']:
-            _log_warning(info_data, 'Split primary hand is specified in both config.h (EE_HANDS) and info.json (split.primary) (Value: %s), the config.h value wins.')
+            _log_warning(info_data, 'Split primary hand is specified in both config.h (EE_HANDS) and info.json (split.primary) (Value: %s), the config.h value wins.' % info_data['split']['primary'])
 
         info_data['split']['primary'] = 'eeprom'
 
@@ -235,7 +235,7 @@ def _extract_split(info_data, config_c):
             info_data['split'] = {}
 
         if 'primary' in info_data['split']:
-            _log_warning(info_data, 'Split primary hand is specified in both config.h (MASTER_RIGHT) and info.json (split.primary) (Value: %s), the config.h value wins.')
+            _log_warning(info_data, 'Split primary hand is specified in both config.h (MASTER_RIGHT) and info.json (split.primary) (Value: %s), the config.h value wins.' % info_data['split']['primary'])
 
         info_data['split']['primary'] = 'right'
 
@@ -244,7 +244,7 @@ def _extract_split(info_data, config_c):
             info_data['split'] = {}
 
         if 'primary' in info_data['split']:
-            _log_warning(info_data, 'Split primary hand is specified in both config.h (MASTER_LEFT) and info.json (split.primary) (Value: %s), the config.h value wins.')
+            _log_warning(info_data, 'Split primary hand is specified in both config.h (MASTER_LEFT) and info.json (split.primary) (Value: %s), the config.h value wins.' % info_data['split']['primary'])
 
         info_data['split']['primary'] = 'left'
 
@@ -257,7 +257,7 @@ def _extract_split(info_data, config_c):
             info_data['split']['transport'] = {}
 
         if 'protocol' in info_data['split']['transport']:
-            _log_warning(info_data, 'Split transport is specified in both config.h (USE_I2C) and info.json (split.transport.protocol) (Value: %s), the config.h value wins.')
+            _log_warning(info_data, 'Split transport is specified in both config.h (USE_I2C) and info.json (split.transport.protocol) (Value: %s), the config.h value wins.' % info_data['split']['transport'])
 
         info_data['split']['transport']['protocol'] = 'i2c'
 
