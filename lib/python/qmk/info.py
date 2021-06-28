@@ -278,7 +278,7 @@ def _extract_split(info_data, config_c):
     direct_pins = config_c.get('DIRECT_PINS_RIGHT', '').replace(' ', '')[1:-1]
 
     if row_pins and col_pins:
-        if info_data.get('split', {}).get('matrix_pins', {}).get('right', {}) in info_data:
+        if info_data.get('split', {}).get('matrix_pins', {}).get('right') in info_data:
             _log_warning(info_data, 'Right hand matrix data is specified in both info.json and config.h, the config.h values win.')
 
         if 'split' not in info_data:
@@ -296,7 +296,7 @@ def _extract_split(info_data, config_c):
         }
 
     if direct_pins:
-        if info_data.get('split', {}).get('matrix_pins', {}).get('right', {}) in info_data:
+        if info_data.get('split', {}).get('matrix_pins', {}).get('right', {}):
             _log_warning(info_data, 'Right hand matrix data is specified in both info.json and config.h, the config.h values win.')
 
         if 'split' not in info_data:
@@ -419,6 +419,7 @@ def _extract_config_h(info_data):
     # Pull data that easily can't be mapped in json
     _extract_matrix_info(info_data, config_c)
     _extract_audio(info_data, config_c)
+    _extract_split(info_data, config_c)
 
     return info_data
 
