@@ -363,11 +363,6 @@ ifeq ($(strip $(LCD_ENABLE)), yes)
     CIE1931_CURVE := yes
 endif
 
-# backward compat
-ifeq ($(strip $(BACKLIGHT_CUSTOM_DRIVER)), yes)
-    BACKLIGHT_DRIVER := custom
-endif
-
 VALID_BACKLIGHT_TYPES := pwm timer software custom
 
 BACKLIGHT_ENABLE ?= no
@@ -580,8 +575,9 @@ endif
 HAPTIC_ENABLE ?= no
 ifneq ($(strip $(HAPTIC_ENABLE)),no)
     COMMON_VPATH += $(DRIVER_PATH)/haptic
-    SRC += haptic.c
     OPT_DEFS += -DHAPTIC_ENABLE
+    SRC += $(QUANTUM_DIR)/haptic.c
+    SRC += $(QUANTUM_DIR)/process_keycode/process_haptic.c
 endif
 
 ifneq ($(filter DRV2605L, $(HAPTIC_ENABLE)), )
