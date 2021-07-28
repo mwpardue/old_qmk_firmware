@@ -358,7 +358,7 @@ ifeq ($(strip $(XAP_ENABLE)), yes)
 
 $(KEYMAP_OUTPUT)/src/info_json_gz.h: $(INFO_JSON_FILES)
 	mkdir -p $(KEYMAP_OUTPUT)/src
-	cat $(INFO_JSON_FILES) | gzip -c9 > $(KEYMAP_OUTPUT)/src/info.json.gz
+	$(QMK_BIN) info -f json -kb $(KEYBOARD) -km $(KEYMAP) | gzip -c9 > $(KEYMAP_OUTPUT)/src/info.json.gz
 	cd $(KEYMAP_OUTPUT)/src >/dev/null 2>&1 \
 		&& xxd -i info.json.gz info_json_gz.h \
 		&& cd - >/dev/null 2>&1
