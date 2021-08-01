@@ -14,9 +14,6 @@ OPT_DEFS += -DNO_SUSPEND_POWER_DOWN
 #   comment out to disable the options.
 #
 BACKLIGHT_ENABLE = no              # Enable keyboard backlight functionality
-RGBLIGHT_ENABLE = no               # Enable keyboard RGB underglow
-RGB_MATRIX_ENABLE = yes            # Enable keyboard RGB matrix (do not use together with RGBLIGHT_ENABLE
-RGB_MATRIX_DRIVER = IS31FL3733     # RGB matrix driver
 BOOTMAGIC_ENABLE = lite            # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = yes              # Mouse keys
 EXTRAKEY_ENABLE = yes              # Audio control and System control
@@ -30,3 +27,10 @@ NO_USB_STARTUP_CHECK = no          # Disable initialization only when usb is plu
 CIE1931_CURVE = yes
 
 LAYOUTS = 65_ansi
+
+# project specific files
+SRC =	keyboards/wilba_tech/wt_main.c \
+		keyboards/wilba_tech/wt_rgb_backlight.c \
+		drivers/issi/is31fl3733.c \
+		quantum/color.c \
+		drivers/chibios/i2c_master.c
