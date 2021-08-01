@@ -151,6 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define DRIVER_LED_TOTAL (DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL)
 #   define RGB_MATRIX_MAXIMUM_BRIGHTNESS 100
 #   define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
+#   define RGB_MATRIX_TYPING_HEATMAP_DECREASE_DELAY_MS 10
 //#   ifndef RGB_DISABLE_WHEN_USB_SUSPENDED
 //#       define RGB_DISABLE_WHEN_USB_SUSPENDED true
 #   define RGB_MATRIX_FRAMEBUFFER_EFFECTS
@@ -163,7 +164,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define RGB_DISABLE_AFTER_TIMEOUT 0   // number of ticks to wait until disabling effects
 // #define RGB_DISABLE_WHEN_USB_SUSPENDED false // turn off effects when suspended
 //#   define RGB_MATRIX_LED_PROCESS_LIMIT 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
-#   define RGB_MATRIX_LED_FLUSH_LIMIT 1
+//#   define RGB_MATRIX_LED_FLUSH_LIMIT 1
 // #define RGBLIGHT_ANIMATIONS             // Run RGB animations
 // #define RGBLIGHT_ANIMATIONS             // Enable all additional animation modes.
 // #define RGBLIGHT_EFFECT_ALTERNATING     // Enable alternating animation mode.
