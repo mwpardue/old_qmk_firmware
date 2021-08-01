@@ -145,9 +145,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef RGB_MATRIX_ENABLE
 #   define DRIVER_ADDR_1 0x50
 #   define DRIVER_ADDR_2 0x52
-#   define DRIVER_COUNT 1
-#   define DRIVER_1_LED_TOTAL 69
-#   define DRIVER_LED_TOTAL DRIVER_1_LED_TOTAL
+#   define DRIVER_COUNT 2
+#   define DRIVER_1_LED_TOTAL 64
+#   define DRIVER_2_LED_TOTAL 5
+#   define DRIVER_LED_TOTAL (DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL)
 #   define RGB_MATRIX_MAXIMUM_BRIGHTNESS 100
 #   define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
 //#   ifndef RGB_DISABLE_WHEN_USB_SUSPENDED
