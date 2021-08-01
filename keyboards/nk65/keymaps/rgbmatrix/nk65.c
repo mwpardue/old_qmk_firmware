@@ -17,7 +17,7 @@
 //#error RGB_BACKLIGHT_NK65 not defined, recheck config.h
 //#endif
 
-#include "nk65.h"
+#include "./keyboards/nk65/keymaps/rgbmatrix/nk65.h"
 #include "drivers/issi/is31fl3733.h"
 #include <quantum.h>
 #include <i2c_master.h>
