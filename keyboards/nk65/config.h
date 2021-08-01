@@ -189,7 +189,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define DISABLE_RGB_MATRIX_SOLID_COLOR                   // Static single hue, no speed support
 // #define DISABLE_RGB_MATRIX_ALPHAS_MODS                   // Static dual hue, speed is hue for secondary hue
 // #define DISABLE_RGB_MATRIX_GRADIENT_UP_DOWN              // Static gradient top to bottom, speed controls how much gradient changes
-#   define DISABLE_RGB_MATRIX_BREATHING                     // Single hue brightness cycling animation
+// #define DISABLE_RGB_MATRIX_BREATHING                     // Single hue brightness cycling animation
 #   define DISABLE_RGB_MATRIX_BAND_SAT                      // Single hue band fading saturation scrolling left to right
 #   define DISABLE_RGB_MATRIX_BAND_VAL                      // Single hue band fading brightness scrolling left to right
 #   define DISABLE_RGB_MATRIX_BAND_PINWHEEL_SAT             // Single hue 3 blade spinning pinwheel fades saturation
