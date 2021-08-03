@@ -17,9 +17,18 @@
 
 #define XXX KC_NO
 
+#ifndef RGB_MATRIX_ENABLE 
+
 #include "quantum.h"
 #include "../wilba_tech/wt_rgb_backlight_keycodes.h"
 #include "via.h"
+
+#else
+
+#include "quantum.h"
+#include "via.h"
+
+#endif //End of RGB_MATRIX if/else
 
 // This a shortcut to help you visually see your layout.
 
