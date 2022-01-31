@@ -16,7 +16,6 @@
 
 #include QMK_KEYBOARD_H
 #include "rgb_matrix_user.h"
-#include "keymap_user.h"
 
 keypos_t led_index_key_position[DRIVER_LED_TOTAL];
 
