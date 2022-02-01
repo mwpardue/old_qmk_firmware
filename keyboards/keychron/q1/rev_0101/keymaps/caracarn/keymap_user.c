@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "keymap.h"
+#include "keymap_user.h"
 #include "rgb_matrix_user.h"
 
 enum layers{
