@@ -28,6 +28,7 @@
 #define TAPPING_TOGGLE 2
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_KEYPRESSES
+#define ENABLE RGB_MATRIX_TYPING_HEATMAP
 #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_TYPING_HEATMAP
 #undef ENABLE_RGB_MATRIX_BAND_SAT                // Single hue band fading saturation scrolling left to right
 #undef ENABLE_RGB_MATRIX_BAND_VAL                // Single hue band fading brightness scrolling left to right
