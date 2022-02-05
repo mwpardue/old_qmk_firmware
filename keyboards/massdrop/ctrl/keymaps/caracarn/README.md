@@ -6,7 +6,7 @@ This keymap is my own modification of keymap Endgame. 99% of the credit for this
 
 ### Typing Layer
 
-![Typing Layer](https://imgur.com/a/v9sHZtw.png)
+![Typing Layer](https://imgur.com/v9sHZtw.png)
 
 ### Function Layer
 
