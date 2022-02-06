@@ -27,7 +27,7 @@ static const char * sendstring_commands[] = {
 //Associate our tap dance key with its functionality
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_LGUI_ML] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_LGUI, _ML),
-    [TD_APP_YL] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_RALT, _VL),
+    [TD_APP_YL] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_APP, _YL),
     [TD_CTRL_TERM] = ACTION_TAP_DANCE_DOUBLE(KC_LCTRL, LCA(KC_T)),
 };
 

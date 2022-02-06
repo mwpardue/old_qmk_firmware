@@ -8,13 +8,13 @@ This keymap is my own modification of keymap Endgame. 99% of the credit for this
 
 ![Typing Layer](https://i.imgur.com/pD6CkN2.png)
 
-### Function Layer
-
-![Function Layer](https://imgur.com/4q4ld4X.png)
-
 *********************************************************************************
 Everything below this point was originally authored by ash0x0 as part of Endgame.
 *********************************************************************************
+
+### Function Layer
+
+![Function Layer](https://imgur.com/4q4ld4X.png)
 
 ### Mouse Layer
 

@@ -25,13 +25,15 @@ enum layers{
 
 enum custom_keycodes {
     KC_MISSION_CONTROL = USER00,
-    KC_LAUNCHPAD
+    KC_LAUNCHPAD,
+    KC_TASK,
+    KC_FLXP
 };
 
+//#define KC_TASK LGUI(KC_TAB)
+//#define KC_FLXP LGUI(KC_E)
 #define KC_MCTL KC_MISSION_CONTROL
 #define KC_LPAD KC_LAUNCHPAD
-#define KC_TASK G(KC_TAB)
-#define KC_FLXP G(KC_E)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_all(
@@ -48,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
         KC_TRNS,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,            KC_TRNS,
         KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,
-        KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
+        KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,  RGB_MOD,  RGB_RMOD,           KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
 
     [WIN_BASE] = LAYOUT_all(
         KC_ESC,             KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL,   KC_MUTE,
@@ -64,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
         KC_TRNS,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,            KC_TRNS,
         KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,
-        KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS)
+        KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,  RGB_MOD,  RGB_RMOD,           KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS)
 };
 
 #if defined(VIA_ENABLE) && defined(ENCODER_ENABLE)
@@ -123,6 +125,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 host_consumer_send(0x2A0);
             } else {
                 host_consumer_send(0);
+            }
+            return false;  // Skip all further processing of this key
+        case KC_TASK:
+            if (record->event.pressed) {
+                register_code(KC_LWIN);
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_LWIN);
+                unregister_code(KC_TAB);
+            }
+            return false;  // Skip all further processing of this key
+        case KC_FLXP:
+            if (record->event.pressed) {
+                register_code(KC_LWIN);
+                register_code(KC_E);
+            } else {
+                unregister_code(KC_LWIN);
+                unregister_code(KC_E);
             }
             return false;  // Skip all further processing of this key
         default:
