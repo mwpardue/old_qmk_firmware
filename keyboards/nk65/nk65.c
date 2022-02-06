@@ -13,9 +13,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef RGB_BACKLIGHT_NK65
-#error RGB_BACKLIGHT_NK65 not defined, recheck config.h
-#endif
+//#ifndef RGB_BACKLIGHT_NK65
+//#error RGB_BACKLIGHT_NK65 not defined, recheck config.h
+//#endif
 
 #include "nk65.h"
 #include "drivers/led/issi/is31fl3733.h"
