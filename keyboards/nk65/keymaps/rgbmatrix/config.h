@@ -46,8 +46,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef RGB_BACKLIGHT_LAYER_2_INDICATOR
 #undef RGB_BACKLIGHT_LAYER_3_INDICATOR
 
-/* Define RGB_MATRIX settings */
-
 #define DRIVER_ADDR_1 0x50
 #define DRIVER_ADDR_2 0x52
 #define DRIVER_COUNT 2
