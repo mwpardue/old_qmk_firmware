@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Remove RGB_Backlight options */
 
-#undef RGB_BACKLIGHT_ENABLED
+// #undef RGB_BACKLIGHT_ENABLED
 #undef RGB_BACKLIGHT_NK65
 #undef DRIVER_COUNT
 #undef DRIVER_LED_TOTAL
