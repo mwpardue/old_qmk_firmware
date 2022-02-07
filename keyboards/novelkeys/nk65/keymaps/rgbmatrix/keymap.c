@@ -14,10 +14,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-//#include <i2c_master.h>
+#include <i2c_master.h>
 //#include <led_tables.h>
-//#include <quantum.h>
-//#include <rgb_matrix.h>
+#include <quantum.h>
+#include <rgb_matrix.h>
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT_65_ansi( /* Base */
