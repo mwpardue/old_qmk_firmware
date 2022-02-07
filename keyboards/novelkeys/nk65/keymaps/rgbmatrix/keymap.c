@@ -14,7 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-#include "config_user.h"
 //#include <i2c_master.h>
 //#include <led_tables.h>
 //#include <quantum.h>
