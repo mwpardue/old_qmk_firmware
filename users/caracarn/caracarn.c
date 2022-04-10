@@ -20,26 +20,22 @@ __attribute__ ((weak)) void matrix_scan_keymap(void) {
 }
 
 void matrix_scan_user(void) {
-    //achordion_task();
+    achordion_task();
     check_disable_capslock();
     caps_word_task();
     process_leader_dictionary();
     matrix_scan_keymap();
 }
 
-// bool achordion_chord(uint16_t tap_hold_keycode,
-//                      keyrecord_t* tap_hold_record,
-//                      uint16_t other_keycode,
-//                      keyrecord_t* other_record) {
+ bool achordion_chord(uint16_t tap_hold_keycode,
+                      keyrecord_t* tap_hold_record,
+                      uint16_t other_keycode,
+                      keyrecord_t* other_record) {
   // Exceptionally consider the following chords as holds, even though they
   // are on the same hand in Dvorak.
-  /* switch (tap_hold_keycode) {
-    case HOME_A:  // A + U.
-      if (other_keycode == HOME_U) { return true; }
-      break;
-
-    case HOME_S:  // S + H and S + G.
-      if (other_keycode == HOME_H || other_keycode == KC_G) { return true; }
+  switch (tap_hold_keycode) {
+    case GUI_A:  // A + C.
+      if (other_keycode == KC_C) { return true; }
       break;
   }
 
@@ -49,26 +45,26 @@ void matrix_scan_user(void) {
 
   // Otherwise, follow the opposite hands rule.
   return achordion_opposite_hands(tap_hold_record, other_record);
-} */
+}
 
-//  uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-//   switch (tap_hold_keycode) {
-//     case CAP_KEY:
-//     case TAB_NUM:
-//     case SPC_MAC:
-//     case BSP_SYM:
-//     case TAB_HYP:
-//       return 0;  // Bypass Achordion for these keys.
-//   }
+  uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+   switch (tap_hold_keycode) {
+     case CAP_KEY:
+     case TAB_NUM:
+     case SPC_MAC:
+     case BSP_SYM:
+     case TAB_HYP:
+       return 0;  // Bypass Achordion for these keys.
+   }
 
-//   return 800;  // Otherwise use a timeout of 800 ms.
-// }
+   return 800;  // Otherwise use a timeout of 800 ms.
+ }
 
 
 // Process record
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    //if (!process_achordion(keycode, record)) { return false; }
+    if (!process_achordion(keycode, record)) { return false; }
     if (!process_caps_word(keycode, record)) { return false; }
 
     // Extend capslock timer

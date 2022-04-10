@@ -104,6 +104,7 @@ bool get_permissive_hold_result(uint16_t keycode) {
         case CTL_L:
         case ALT_K:
         case GUI_J:
+        case SPCSFT:
             // Immediately select the hold action when another key is tapped.
             return true;
         default:

@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 
-//#include "features/achordion.h"
+#include "features/achordion.h"
 #include "definitions/layers.h"
 #include "features/secrets.h"
 #include "definitions/keycodes.h"

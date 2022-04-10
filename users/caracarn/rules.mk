@@ -1,6 +1,6 @@
 SRC += features/secrets.c
 SRC += caracarn.c
-#SRC += features/achordion.c
+SRC += features/achordion.c
 SRC += definitions/keycodes.c
 SRC += features/caps_word.c
 SRC += features/taphold.c
