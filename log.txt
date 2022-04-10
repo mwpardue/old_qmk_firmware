@@ -1,0 +1,4 @@
+[[34mΨ[0m[0m] [2022-02-06 00:02:09] [file:/Users/mpardue/git/qmk_firmware/lib/python/qmk/cli/compile.py] [line:67] Compiling keymap with [36mmake --jobs=1 nk65:rgbmatrix[0m
+[[36m☐[0m] [2022-02-06 00:02:09] [file:/usr/local/Cellar/qmk/0.1.0/libexec/lib/python3.9/site-packages/milc/milc.py] [line:152] Running command: ['make', '--jobs=1', 'nk65:rgbmatrix'][0m
+[[34mΨ[0m[0m] [2022-02-06 20:56:40] [file:/Users/mpardue/git/qmk_firmware/lib/python/qmk/cli/compile.py] [line:67] Compiling keymap with [36mmake --jobs=1 novelkeys/nk65:rgbmatrix[0m
+[[36m☐[0m] [2022-02-06 20:56:40] [file:/usr/local/Cellar/qmk/0.1.0/libexec/lib/python3.9/site-packages/milc/milc.py] [line:152] Running command: ['make', '--jobs=1', 'novelkeys/nk65:rgbmatrix'][0m
