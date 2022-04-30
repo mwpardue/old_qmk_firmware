@@ -8,45 +8,21 @@ const uint16_t PROGMEM open_incognito_combo[] = {SPC_MAC, KC_I, KC_O, COMBO_END}
 const uint16_t PROGMEM reopen_tab_combo[] = {SPC_MAC, KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM hex_layer_combo[] = {TAB_NUM, KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM sleep_combo[] = {SPC_MAC, KC_U, KC_P, COMBO_END};
-const uint16_t PROGMEM function_layer_combo[] = {SPC_MAC, TAB_NUM, KC_Q, KC_P, COMBO_END};
+const uint16_t PROGMEM function_layer_combo[] = {BSP_SYM, KC_N, KC_M, COMBO_END};
 
 //Keycodes
 const uint16_t PROGMEM esc_combo[] = {TAB_NUM, KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM enter_combo[] = {SPC_MAC, LALT_T(KC_K), LCTL_T(KC_L), COMBO_END};
-
-//Modifiers
-const uint16_t PROGMEM l_lctl_combo[] = {TAB_NUM, GUI_A, CTL_S, COMBO_END};
-const uint16_t PROGMEM l_lalt_combo[] = {TAB_NUM, CTL_S, ALT_D, COMBO_END};
-const uint16_t PROGMEM l_lsft_combo[] = {TAB_NUM, ALT_D, GUI_F, COMBO_END};
-const uint16_t PROGMEM l_lgui_combo[] = {TAB_NUM, ALT_D, KC_V, COMBO_END};
-
-const uint16_t PROGMEM r_lctl_combo[] = {SPC_MAC, CTL_L, TD_QUOT, COMBO_END};
-const uint16_t PROGMEM r_ralt_combo[] = {SPC_MAC, ALT_K, CTL_L, COMBO_END};
-const uint16_t PROGMEM r_lsft_combo[] = {SPC_MAC, GUI_J, ALT_K, COMBO_END};
-const uint16_t PROGMEM r_lgui_combo[] = {SPC_MAC, ALT_K, KC_M, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {SPC_MAC, RALT_T(KC_K), RCTL_T(KC_L), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
 
-  COMBO(l_lctl_combo, CB_OSMLCTL),
-  COMBO(l_lalt_combo, CB_OSMLALT),
-  COMBO(l_lsft_combo, CB_OSMLSFT),
-  COMBO(l_lgui_combo, CB_OSMLGUI),
-  COMBO(r_ralt_combo, CB_OSMRALT),
-  COMBO(r_lctl_combo, CB_OSMLCTL),
-  COMBO(r_lsft_combo, CB_OSMLSFT),
-  COMBO(r_lgui_combo, CB_OSMLGUI),
-
-
-
   COMBO(esc_combo, KC_ESC),
   COMBO(enter_combo, KC_ENTER),
-
-
   COMBO(new_tab_combo, CB_NWTB),
   COMBO(reopen_tab_combo, CB_OPTB),
   COMBO(open_incognito_combo, CB_NCGN),
   COMBO(hex_layer_combo, TOHEX),
-  COMBO(function_layer_combo, TOFUN),
+  COMBO(function_layer_combo, MOFUN),
   COMBO(sleep_combo, MACSLEP)
 
 };

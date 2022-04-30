@@ -77,12 +77,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Disable the animations you don't want/need.  You will need to disable a good number of these    *
  * because they take up a lot of space.  Disable until you can successfully compile your firmware. */
-#   define ENABLE_RGB_MATRIX_ALPHAS_MODS
+#    undef ENABLE_RGB_MATRIX_ALPHAS_MODS
 #    undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
 #    undef ENABLE_RGB_MATRIX_BREATHING
 #    undef ENABLE_RGB_MATRIX_BAND_SAT
 #    undef ENABLE_RGB_MATRIX_BAND_VAL
-#   define ENABLE_RGB_MATRIX_BAND_PINWHEEL_SAT
+#    undef ENABLE_RGB_MATRIX_BAND_PINWHEEL_SAT
 #    undef ENABLE_RGB_MATRIX_BAND_PINWHEEL_VAL
 #    undef ENABLE_RGB_MATRIX_BAND_SPIRAL_SAT
 #    undef ENABLE_RGB_MATRIX_BAND_SPIRAL_VAL
@@ -91,7 +91,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    undef ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
 #    undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN
 #    undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL
-#   define ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
+#    undef ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
 #    undef ENABLE_RGB_MATRIX_DUAL_BEACON
 #    undef ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
 #    undef ENABLE_RGB_MATRIX_CYCLE_SPIRAL
@@ -100,7 +100,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    undef ENABLE_RGB_MATRIX_RAINDROPS
 #    undef ENABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
 #   define ENABLE_RGB_MATRIX_TYPING_HEATMAP
-#   define ENABLE_RGB_MATRIX_DIGITAL_RAIN
+#    undef ENABLE_RGB_MATRIX_DIGITAL_RAIN
 #    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE
 #    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
@@ -110,7 +110,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
 #    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
 #    undef ENABLE_RGB_MATRIX_SPLASH
-#   define ENABLE_RGB_MATRIX_MULTISPLASH
+#    undef ENABLE_RGB_MATRIX_MULTISPLASH
 #    undef ENABLE_RGB_MATRIX_SOLID_SPLASH
 #    undef ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif

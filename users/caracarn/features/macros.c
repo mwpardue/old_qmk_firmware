@@ -20,6 +20,10 @@ process_record_result_t process_macros(uint16_t keycode, keyrecord_t *record) {
             case DDS:
                 SEND_STRING("cd ..");
                 return PROCESS_RECORD_RETURN_FALSE;
+
+            case FOPEN:
+                SEND_STRING("open ./");
+                tap_code(KC_ENT);
         }
     }
 

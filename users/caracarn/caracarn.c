@@ -34,8 +34,12 @@ void matrix_scan_user(void) {
   // Exceptionally consider the following chords as holds, even though they
   // are on the same hand in Dvorak.
   switch (tap_hold_keycode) {
-    case GUI_A:  // A + C.
-      if (other_keycode == KC_C) { return true; }
+    case GUI_Z:  // A + C.
+      if (other_keycode == KC_C || other_keycode == KC_V) { return true; }
+      break;
+
+    case GUI_F: //F   + W, Q
+      if (other_keycode == KC_W || other_keycode == KC_Q) {return true;}
       break;
   }
 
@@ -54,6 +58,7 @@ void matrix_scan_user(void) {
      case SPC_MAC:
      case BSP_SYM:
      case TAB_HYP:
+     case SPCSFT:
        return 0;  // Bypass Achordion for these keys.
    }
 

@@ -43,27 +43,22 @@ uint16_t get_tapping_term_result(uint16_t keycode) {
         case TAB_NUM:
         case SPC_MAC:
             return TAPPING_TERM + 40;
-        case GUI_A:
+        case GUI_Z:
         case CTL_S:
         case ALT_D:
         case GUI_F:
         case CTL_L:
         case ALT_K:
         case GUI_J:
+        case GUI_4:
+        case ALT_5:
+        case CTL_6:
             return TAPPING_TERM + 115;
         case TD_ANGB:
         case TD_PARB:
         case TD_CURB:
         case TD_SQRB:
             return TAPPING_TERM + 100;
-        // case TD(CAP_KEY):
-        //     return 250;
-        case CB_OSMLALT:
-        case CB_OSMRALT:
-        case CB_OSMLSFT:
-        case CB_OSMLGUI:
-        case CB_OSMLCTL:
-            return TAPPING_TERM + 2000;
         default:
             return TAPPING_TERM;
     }
@@ -97,13 +92,16 @@ bool get_hold_on_other_key_press_result(uint16_t keycode) {
 
 bool get_permissive_hold_result(uint16_t keycode) {
     switch (keycode) {
-        case GUI_A:
+        case GUI_Z:
         case CTL_S:
         case ALT_D:
         case GUI_F:
         case CTL_L:
         case ALT_K:
         case GUI_J:
+        case GUI_4:
+        case ALT_5:
+        case CTL_6:
         case SPCSFT:
             // Immediately select the hold action when another key is tapped.
             return true;

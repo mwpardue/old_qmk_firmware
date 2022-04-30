@@ -7,6 +7,7 @@
 enum {
     DDS = SAFE_RANGE,
     TIPS,
+    FOPEN,
     ALT_TAB,
 
     KC_SECRET_1,
@@ -25,52 +26,39 @@ enum {
 
     SS_MODP, SS_MODM,
 
-    SS_GV_A, SS_CR_A, SS_TL_A, SS_SQ_A,
-    SS_SQ_U, SS_CR_O, SS_SQ_O, SS_SQ_I,
-    SS_CR_E, SS_TL_O, SS_SQ_C, SS_SQ_E,
-
-    SS_SELW, SS_SWIN, SS_CAPS,
-
-    SS_RS,  SS_RE,  SS_PH,  SS_LH,  SS_ING, SS_IO,
-    SS_GU,  SS_SH,  SS_HE,  SS_TH,  SS_NH,  SS_CH,  SS_WH,  SS_NDO,
-    SS_QU,  SS_SR,  SS_ER,  SS_GH,  SS_TAR, SS_FAR, SS_DDS, SS_CK
+    SS_SELW, SS_SWIN, SS_CAPS
 };
 
 // Mod-taps
 
 // One-shot mods
 
-#define OSMLSFT OSM(MOD_LSFT)
-#define OSMLCTL OSM(MOD_LCTL)
-#define OSMLALT OSM(MOD_LALT)
-#define OSMRALT OSM(MOD_RALT)
-#define OSMLGUI OSM(MOD_LGUI)
-#define OSMRSFT OSM(MOD_RSFT)
-#define OSMRCTL OSM(MOD_RCTL)
-#define OSMRGUI OSM(MOD_RGUI)
-#define OSMHYPR OSM(MOD_HYPR)
-
-#define CB_OSMLSFT OSM(MOD_LSFT)
-#define CB_OSMLCTL OSM(MOD_LCTL)
-#define CB_OSMLALT OSM(MOD_LALT)
-#define CB_OSMRALT OSM(MOD_RALT)
-#define CB_OSMLGUI OSM(MOD_LGUI)
+//#define OSMLSFT OSM(MOD_LSFT)
+//#define OSMLCTL OSM(MOD_LCTL)
+//#define OSMLALT OSM(MOD_LALT)
+//#define OSMRALT OSM(MOD_RALT)
+//#define OSMLGUI OSM(MOD_LGUI)
+//#define OSMRSFT OSM(MOD_RSFT)
+//#define OSMRCTL OSM(MOD_RCTL)
+//#define OSMRGUI OSM(MOD_RGUI)
+//#define OSMHYPR OSM(MOD_HYPR)
 
 // Left-hand home row mods
-#define GUI_A LGUI_T(KC_A)
+#define GUI_Z LGUI_T(KC_Z)
 #define CTL_S LCTL_T(KC_S)
 #define ALT_D LALT_T(KC_D)
 #define GUI_F LGUI_T(KC_F)
-#define SFT_1 LSFT_T(KC_1)
 
 // // Right-hand home row mods
 #define GUI_J RGUI_T(KC_J)
 #define ALT_K RALT_T(KC_K)
 #define CTL_L RCTL_T(KC_L)
+#define GUI_4 RGUI_T(KC_4)
+#define ALT_5 RALT_T(KC_5)
+#define CTL_6 RCTL_T(KC_6)
 
 // Layer-taps
 
-#define NAV_MOD LT(_NAVIGATION, SP_MOD)
 #define MOD_MAC LT(_MACROS, SP_MOD)
 #define MOD_CTL LCTL_T(SP_MOD)
 #define TAB_HYP HYPR_T(KC_TAB)
@@ -85,11 +73,10 @@ enum {
 #define RAISE TG(_MACROS)
 #define MONUM MO(_NUMPAD)
 #define MOSYM MO(_SYMBOL)
-#define MOFUNC MO(_FUNCTION)
+#define MOFUN MO(_FUNCTION)
 #define TOBAS TO(_BASE)
 #define TONUM TO(_NUMPAD)
 #define TOSYM TO(_SYMBOL)
-#define TONAV TO(_NAVIGATION)
 #define TOMAC TO(_MACROS)
 #define TOHEX TO(_HEX)
 #define TOFUN TO(_FUNCTION)
@@ -114,6 +101,8 @@ enum {
 #define PRVTAB LCTL(LSFT(KC_TAB))
 #define NXTTAB LCTL(KC_TAB)
 #define ESCSHFT LSFT_T(KC_ESC)
+#define ESC_CTL LCTL_T(KC_ESC)
+#define GUI_ENT LGUI_T(KC_ENT)
 #define TABCTRL LCTL_T(KC_TAB)
 #define SPCSFT LSFT_T(KC_SPC)
 #define MACSLEP LSFT(LCTL(KC_POWER))

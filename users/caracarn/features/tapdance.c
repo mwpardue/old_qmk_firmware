@@ -99,10 +99,10 @@ void td_minus_colon(qk_tap_dance_state_t *state, void *user_data) {
     tap_state.state = dance_state(state);
     switch (tap_state.state) {
         case TD_SINGLE_TAP:
-            tap_code16(KC_MINS);
+            tap_code16(KC_COLN);
             break;
         case TD_DOUBLE_TAP:
-            tap_code16(KC_COLN);
+            tap_code16(KC_MINS);
             break;
         default: break;
     }

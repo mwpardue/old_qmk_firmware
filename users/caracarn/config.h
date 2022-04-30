@@ -26,8 +26,8 @@
 #define LEADER_NO_TIMEOUT
 
 // Configure combos
-#define COMBO_COUNT 16
-#define COMBO_TERM 30
+#define COMBO_COUNT 8
+#define COMBO_TERM 60
 #define EXTRA_SHORT_COMBOS
 #define COMBO_STRICT_TIMER
 #define COMBO_HOLD_TERM 175
