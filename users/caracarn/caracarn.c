@@ -1,6 +1,6 @@
 #include "caracarn.h"
 
-extern os_t os;
+//extern os_t os;
 
 void matrix_init_user(void) {
     // Enable or disable debugging
@@ -20,13 +20,25 @@ __attribute__ ((weak)) void matrix_scan_keymap(void) {
 }
 
 void matrix_scan_user(void) {
+#ifdef ACHORDION_ENABLE
     achordion_task();
+#endif
+
+#ifdef CAPSLOCK_TIMER_ENABLE
     check_disable_capslock();
+#endif
+
+#ifdef CAPSWORD_ENABLE
     caps_word_task();
+#endif
+
+#ifdef LEADER_ENABLE
     process_leader_dictionary();
+#endif
     matrix_scan_keymap();
 }
 
+#ifdef ACHORDION_ENABLE
  bool achordion_chord(uint16_t tap_hold_keycode,
                       keyrecord_t* tap_hold_record,
                       uint16_t other_keycode,
@@ -57,21 +69,26 @@ void matrix_scan_user(void) {
      case TAB_NUM:
      case SPC_MAC:
      case BSP_SYM:
-     case TAB_HYP:
      case SPCSFT:
        return 0;  // Bypass Achordion for these keys.
    }
 
    return 800;  // Otherwise use a timeout of 800 ms.
  }
-
+#endif
 
 // Process record
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef ACHORDION_ENABLE
     if (!process_achordion(keycode, record)) { return false; }
-    if (!process_caps_word(keycode, record)) { return false; }
+#endif
 
+#ifdef CAPSWORD_ENABLE
+    if (!process_caps_word(keycode, record)) { return false; }
+#endif
+
+#ifdef CAPSLOCK_TIMER_ENABLE
     // Extend capslock timer
      switch (process_capslock_timer_extension(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -81,7 +98,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef SECRETS_ENABLE
     // Process secrets
      switch (process_secrets(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -91,7 +110,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef WINDOW_SWAPPER_ENABLE
     // Process window swapper
     switch (process_window_swapper(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -101,7 +122,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef CUSTOM_SHIFT_ENABLE
     // Process custom_shift
    switch (process_custom_shift(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -111,7 +134,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef SHORTCUTS_ENABLE
     // Process custom_shortcuts
     switch (process_custom_shortcuts(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -121,7 +146,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef COMBO_ENABLE
     // Process combos
     switch (process_combos(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -131,7 +158,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef MACRO_ENABLE
     // Process macros
     switch (process_macros(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -141,7 +170,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef SELECT_WORD_ENABLE
     // Process select word
     switch (process_select_word(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -151,7 +182,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef TAPHOLD_ENABLE
     // Process taphold
 /*     switch (process_taphold(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -162,16 +195,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
     };
  */
-    /* // Process accentuation
-    switch (process_accentuated_characters(keycode, record)) {
-        case PROCESS_RECORD_RETURN_TRUE:
-            return true;
-        case PROCESS_RECORD_RETURN_FALSE:
-            return false;
-        default:
-            break;
-    }; */
+#endif
 
+#ifdef DEFAULT_MOD_ENABLE
     // Process default modifier key
     switch (process_default_mod_key(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -181,7 +207,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
+#ifdef CAPITALIZE_KEY_ENABLE
      // Process capitalize key
     switch (process_capitalize_key(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -191,17 +219,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
-    /* // Process mouse layer
-    switch (process_mouselayer(keycode, record)) {
-        case PROCESS_RECORD_RETURN_TRUE:
-            return true;
-        case PROCESS_RECORD_RETURN_FALSE:
-            return false;
-        default:
-            break;
-    }; */
-
+#ifdef OS_TOGGLE_ENABLE
     // Process OS toggle
     switch (process_os_toggle(keycode, record)) {
         case PROCESS_RECORD_RETURN_TRUE:
@@ -211,6 +231,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
+#endif
 
   // If console is enabled, it will print the matrix position and status of each key pressed
 #ifdef CONSOLE_ENABLE
@@ -223,6 +244,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Tap-hold configuration
 
+#ifdef TAPHOLD_ENABLE
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     return get_hold_on_other_key_press_result(keycode);
 }
@@ -238,17 +260,4 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     return get_tapping_term_result(keycode);
 }
-
-/* // Dynamic macros
-
-void dynamic_macro_record_start_user(void) {
-}
-
-void dynamic_macro_play_user(int8_t direction) {
-}
-
-void dynamic_macro_record_key_user(int8_t direction, keyrecord_t *record) {
-}
-
-void dynamic_macro_record_end_user(int8_t direction) {
-} */
+#endif

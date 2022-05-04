@@ -4,9 +4,9 @@
 
 #include "../definitions/keycodes.h"
 #include "caps_word.h"
-#include "os_toggle.h"
-#include "default_mod_key.h"
-#include "dynamic_macro.h"
+//#include "os_toggle.h"
+//#include "default_mod_key.h"
+//#include "dynamic_macro.h"
 
 enum {
     COM_HYP,

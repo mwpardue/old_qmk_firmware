@@ -2,7 +2,7 @@
 
 #include "macros.h"
 
-extern os_t os;
+//extern os_t os;
 
 process_record_result_t process_macros(uint16_t keycode, keyrecord_t *record) {
     //if (!process_caps_word(keycode, record)) { return false; }

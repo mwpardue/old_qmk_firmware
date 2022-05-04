@@ -2,7 +2,7 @@
 
 #include "tapdance.h"
 
-extern os_t os;
+//extern os_t os;
 
 static td_tap_t tap_state = {
     .state = TD_NONE

@@ -3,7 +3,7 @@
 #include "capitalize_key.h"
 #include "caps_word.h"
 
-extern os_t os;
+//extern os_t os;
 
 process_record_result_t process_capitalize_key(uint16_t keycode, keyrecord_t *record) {
 
