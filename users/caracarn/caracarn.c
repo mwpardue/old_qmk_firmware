@@ -121,6 +121,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_caps_word(keycode, record)) { return false; }
 #endif
 
+#ifdef LAYER_LOCK_ENABLE
+      if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
+#endif
+
 #ifdef CAPSLOCK_TIMER_ENABLE
     // Extend capslock timer
      switch (process_capslock_timer_extension(keycode, record)) {

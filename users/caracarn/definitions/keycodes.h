@@ -57,6 +57,10 @@ enum {
     SS_SWIN,
 #endif
 
+#ifdef LAYER_LOCK_ENABLE
+    LLOCK,
+#endif
+
     CUSTOM_KEYCODE_END
 };
 

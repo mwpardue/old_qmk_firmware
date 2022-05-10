@@ -79,4 +79,8 @@
     #include "features/custom_shift.h"
 #endif
 
+#ifdef LAYER_LOCK_ENABLE
+    #include "features/layer_lock.h"
+#endif
+
 void matrix_scan_keymap(void);

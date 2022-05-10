@@ -120,3 +120,9 @@ ifeq ($(strip $(CUSTOM_SHIFT_ENABLE)), yes)
     SRC += $(USER_PATH)/features/custom_shift.c
     OPT_DEFS += -DCUSTOM_SHIFT_ENABLE
 endif
+
+LAYER_LOCK_ENABLE ?= no
+ifeq ($(strip $(LAYER_LOCK_ENABLE)), yes)
+    SRC += $(USER_PATH)/features/layer_lock.c
+    OPT_DEFS += -DLAYER_LOCK_ENABLE
+endif
