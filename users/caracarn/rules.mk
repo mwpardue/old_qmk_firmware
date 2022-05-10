@@ -19,6 +19,24 @@ ifeq ($(strip $(ACHORDION_ENABLE)), yes)
     OPT_DEFS += -DACHORDION_ENABLE
 endif
 
+SMART_CASE_ENABLE ?= no
+ifeq ($(strip $(SMART_CASE_ENABLE)), yes)
+    SRC += $(USER_PATH)/features/smart_case.c
+    OPT_DEFS += -DSMART_CASE_ENABLE
+endif
+
+CUSTOM_ONESHOT_MODS_ENABLE ?= no
+ifeq ($(strip $(CUSTOM_ONESHOT_MODS_ENABLE)), yes)
+    SRC += $(USER_PATH)/features/custom_oneshot_mods.c
+    OPT_DEFS += -DCUSTOM_ONESHOT_MODS_ENABLE
+endif
+
+SMART_THUMB_KEYS_ENABLE ?= no
+ifeq ($(strip $(SMART_THUMB_KEYS_ENABLE)), yes)
+    SRC += $(USER_PATH)/features/smart_thumb_keys.c
+    OPT_DEFS += -DSMART_THUMB_KEYS_ENABLE
+endif
+
 CAPSWORD_ENABLE ?= no
 ifeq ($(strip $(CAPSWORD_ENABLE)), yes)
     SRC += $(USER_PATH)/features/caps_word.c

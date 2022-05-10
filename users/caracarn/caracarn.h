@@ -11,6 +11,18 @@
     #include "features/achordion.h"
 #endif
 
+#ifdef SMART_CASE_ENABLE
+    #include "features/smart_case.h"
+#endif
+
+#ifdef CUSTOM_ONESHOT_MODS_ENABLE
+    #include "features/custom_oneshot_mods.h"
+#endif
+
+#ifdef SMART_THUMB_KEYS_ENABLE
+    #include "features/smart_thumb_keys.h"
+#endif
+
 #ifdef SECRETS_ENABLE
     #include "features/secrets.h"
 #endif

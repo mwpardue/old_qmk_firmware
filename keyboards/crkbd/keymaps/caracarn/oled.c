@@ -144,24 +144,36 @@ void render_logo(void) {
     static const char PROGMEM corne_logo[] = {
         0x80, 0x81, 0x82, 0x83, 0x84,
         0xa0, 0xa1, 0xa2, 0xa3, 0xa4,
-        0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0};
+        0xc0, 0xc1, 0xc2, 0xc3, 0xc4,
+        0x99, 0x9a, 0x9b, 0x9c, 0x9d, 0};
     oled_write_P(corne_logo, false);
-    oled_write_P(PSTR("corne"), false);
+}
+
+void render_layer_box_top(void) {
+    static const char PROGMEM layer_top[] = {
+        0x94, 0x95, 0x96, 0x97, 0x98, 0};
+    oled_write_P(layer_top, false);
+}
+
+void render_layer_box_bottom(void) {
+    static const char PROGMEM layer_bottom[] = {
+        0xd4, 0xd5, 0xd6, 0xd7, 0xd8, 0};
+    oled_write_P(layer_bottom, false);
 }
 
 void render_layer_state(void) {
     static const char PROGMEM base_layer[] = {
-        0x20, 0x7B, 0x5F, 0x7D, 0x20, 0};
+        0xb4, 0x42, 0x41, 0x53, 0xb8, 0};
     static const char PROGMEM numpad_layer[] = {
-        0x20, 0x7B, 0x23, 0x7D, 0x20, 0};
+        0xb4, 0x4e, 0x55, 0x4d, 0xb8, 0};
     static const char PROGMEM macro_layer[] = {
-        0x20, 0x7B, 0x24, 0x7D, 0x20, 0};
+        0xb4, 0x4d, 0x41, 0x43, 0xb8, 0};
     static const char PROGMEM symbol_layer[] = {
-        0x20, 0x7B, 0x25, 0x7D, 0x20, 0};
+        0xb4, 0x53, 0x59, 0x4d, 0xb8, 0};
     static const char PROGMEM hex_layer[] = {
-        0x20, 0x7B, 0x30, 0x78, 0x7D, 0};
+        0xb4, 0x48, 0x45, 0x58, 0xb8, 0};
     static const char PROGMEM function_layer[] = {
-        0x20, 0x7B, 0x2A, 0x7D, 0x20, 0};
+        0xb4, 0x46, 0x55, 0x4e, 0xb8, 0};
     if(layer_state_is(_NUMPAD)) {
         oled_write_P(numpad_layer, false);
     } else if(layer_state_is(_MACROS)) {
@@ -181,9 +193,11 @@ bool oled_task_user(void) {
     // Renders the current keyboard state (layers and mods)
     render_logo();
     render_space();
-    render_layer_state();
-    render_space();
     render_mod_status_gui_alt(get_mods()|get_oneshot_mods());
     render_mod_status_ctrl_shift(get_mods()|get_oneshot_mods());
+    render_space();
+    render_layer_box_top();
+    render_layer_state();
+    render_layer_box_bottom();
     return false;
 }

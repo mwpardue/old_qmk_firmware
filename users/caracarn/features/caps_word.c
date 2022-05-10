@@ -17,6 +17,7 @@
 // https://getreuer.info/posts/keyboards/caps-word
 
 #include "caps_word.h"
+#include "definitions/keycodes.h"
 
 static bool caps_word_active = false;
 
@@ -127,7 +128,13 @@ void caps_word_set(bool active) {
 
 bool caps_word_get(void) { return caps_word_active; }
 
-__attribute__((weak)) void caps_word_set_user(bool active) {}
+__attribute__((weak)) void caps_word_set_user(bool active) {
+    //if (active) {
+        //rgb_matrix_set_color(6, 255, 0, 0);
+    //} else {
+        //rgb_matrix_set_color(6, 0, 0, 0);
+    //}
+}
 
 __attribute__((weak)) bool caps_word_press_user(uint16_t keycode) {
   switch (keycode) {
@@ -143,6 +150,7 @@ __attribute__((weak)) bool caps_word_press_user(uint16_t keycode) {
     case KC_UNDS:
     case KC_LPRN:
     case KC_RPRN:
+    case CAP_KEY:
       return true;
 
     default:

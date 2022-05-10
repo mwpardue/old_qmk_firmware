@@ -1,85 +1,59 @@
-#pragma once
+// Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
+// SPDX-License-Identifier: GPL-2.0-or-later
 
-#ifdef RGBLIGHT_ENABLE
-extern rgblight_config_t rgblight_config;
-rgblight_config_t        RGB_current_config;
-#endif
+#include "caracarn.h"
+#include "rgb.h"
+#include "features/caps_word.h"
+extern led_config_t g_led_config;
 
-#ifdef RGB_MATRIX_ENABLE
-extern rgb_config_t rgb_matrix_config;
-rgb_config_t        RGB_current_config;
-#endif
 
-void save_rgb_config(void) {
-#ifdef RGBLIGHT_ENABLE
-    RGB_current_config.enable = rgblight_config.enable;
-    RGB_current_config.mode   = rgblight_get_mode();
-    RGB_current_config.speed  = rgblight_get_speed();
-    RGB_current_config.hue    = rgblight_get_hue();
-    RGB_current_config.sat    = rgblight_get_sat();
-    RGB_current_config.val    = rgblight_get_val();
-#elif RGB_MATRIX_ENABLE
-    RGB_current_config.enable = rgb_matrix_config.enable;
-    RGB_current_config.mode   = rgb_matrix_get_mode();
-    RGB_current_config.speed  = rgb_matrix_config.speed;
-    RGB_current_config.hsv    = rgb_matrix_config.hsv;
-#endif
+void rgb_matrix_layer_helper(uint8_t hue, uint8_t sat, uint8_t val, uint8_t led_min, uint8_t led_max) {
+    HSV hsv = {hue, sat, val};
+    if (hsv.v > rgb_matrix_get_val()) {
+        hsv.v = rgb_matrix_get_val();
+    }
+
+            RGB rgb = hsv_to_rgb(hsv);
+            for (uint8_t i = 0; i < DRIVER_LED_TOTAL; i++) {
+			  rgb_matrix_sethsv_noeeprom(hsv.h, hsv.s, hsv.v);
+                bool isCapsWord = caps_word_get();
+                    if (isCapsWord) {
+                        rgb_matrix_set_color(6, 255, 0, 0);
+                    }
+                if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_UNDERGLOW)) {
+                    RGB_MATRIX_INDICATOR_SET_COLOR(i, rgb.r, rgb.g, rgb.b);
+                }
+            }
+        }
+
+__attribute__((weak)) void rgb_matrix_indicator_keymap(void) {}
+
+__attribute__((weak)) bool rgb_matrix_indicators_advanced_keymap(uint8_t led_min, uint8_t led_max) { return true; }
+void                       rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    if (!rgb_matrix_indicators_advanced_keymap(led_min, led_max)) { return; }
+    {
+        switch (get_highest_layer(layer_state | default_layer_state)) {
+            case _BASE:
+                rgb_matrix_layer_helper(HSV_CYAN, led_min, led_max);
+                break;
+            case _NUMPAD:
+                rgb_matrix_layer_helper(HSV_GREEN, led_min, led_max);
+                break;
+            case _MACROS:
+                rgb_matrix_layer_helper(HSV_CORAL, led_min, led_max);
+                break;
+            case _SYMBOL:
+                rgb_matrix_layer_helper(HSV_YELLOW, led_min, led_max);
+                break;
+            case _FUNCTION:
+                rgb_matrix_layer_helper(HSV_RED, led_min, led_max);
+                break;
+            case _HEX:
+                rgb_matrix_layer_helper(HSV_PURPLE, led_min, led_max);
+                break;
+        }
+    }
 }
 
-void restore_rgb_config(void) {
-#ifdef RGBLIGHT_ENABLE
-    rgblight_set_speed_noeeprom(RGB_current_config.speed);
-    if (rgblight_config.mode != RGB_current_config.mode) {
-        rgblight_mode_noeeprom(RGB_current_config.mode);
-    }
-    if ((RGB_current_config.hue != rgblight_config.hue) || (RGB_current_config.sat != rgblight_config.sat) || (RGB_current_config.val != rgblight_config.val)) {
-        rgblight_sethsv_noeeprom(RGB_current_config.hue, RGB_current_config.sat, RGB_current_config.val);
-    }
-    if (rgblight_config.enable) {
-        rgblight_enable_noeeprom();
-    } else {
-        rgblight_disable_noeeprom();
-    }
-#elif RGB_MATRIX_ENABLE
-    rgb_matrix_config.speed   = RGB_current_config.speed;
-    if (rgb_matrix_config.mode != RGB_current_config.mode) {
-        rgb_matrix_mode_noeeprom(RGB_current_config.mode);
-    }
-    if ((RGB_current_config.hsv.h != rgb_matrix_config.hsv.h) || (RGB_current_config.hsv.s != rgb_matrix_config.hsv.s) || (RGB_current_config.hsv.v != rgb_matrix_config.hsv.v)) {
-        rgb_matrix_sethsv_noeeprom(RGB_current_config.hsv.h, RGB_current_config.hsv.s, RGB_current_config.hsv.v);
-    }
-    if (rgb_matrix_config.enable) {
-        rgb_matrix_enable_noeeprom();
-    } else {
-        rgb_matrix_disable_noeeprom();
-    }
-#endif
-}
-
-void rgb_by_layer(int layer) {
-#ifdef RGBLIGHT_ENABLE
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-#elif RGB_MATRIX_ENABLE
-    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-#endif
-
-    switch (layer) {
-        case _NUMPAD:
-            rgb_matrix_sethsv_noeeprom(9, 255, 255);
-            break;
-        case _MACROS:
-            rgb_matrix_sethsv_noeeprom(HSV_CYAN);
-            break;
-        case _SYMBOL:
-            rgb_matrix_sethsv_noeeprom(HSV_MAGENTA);
-            break;
-        case _FUNCTION:
-            rgb_matrix_sethsv_noeeprom(HSV_GOLD);
-            break;
-        case _HEX:
-            rgb_matrix_sethsv_noeeprom(HSV_GREEN);
-            break;
-        default:
-            rgb_matrix_mode_noeeprom(RGB_MATRIX_TYPING_HEATMAP);
-    }
-}
+__attribute__((weak)) bool rgb_matrix_indicators_keymap(void) { return true; }
+void                       rgb_matrix_indicators_user(void) { rgb_matrix_indicators_keymap(); }

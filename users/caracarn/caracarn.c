@@ -24,12 +24,20 @@ void matrix_scan_user(void) {
     achordion_task();
 #endif
 
+#ifdef SMART_CASE_ENABLE
+    check_disable_smart_case();
+#endif
+
 #ifdef CAPSLOCK_TIMER_ENABLE
     check_disable_capslock();
 #endif
 
 #ifdef CAPSWORD_ENABLE
     caps_word_task();
+#endif
+
+#ifdef CUSTOM_ONESHOT_MODS_ENABLE
+    check_oneshot_mods_timeout();
 #endif
 
 #ifdef LEADER_ENABLE
@@ -57,8 +65,9 @@ void matrix_scan_user(void) {
 
   // Also allow same-hand holds when the other key is in the rows below the
   // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
-  //if (tap_hold_keycode->event.key.row % (MATRIX_ROWS / 2) >= 8) { return true; }
-
+  #ifdef SPLIT_KEYBOARD
+    //if (tap_hold_keycode->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; }
+  #endif
   // Otherwise, follow the opposite hands rule.
   return achordion_opposite_hands(tap_hold_record, other_record);
 }
@@ -82,6 +91,30 @@ void matrix_scan_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ACHORDION_ENABLE
     if (!process_achordion(keycode, record)) { return false; }
+#endif
+
+#ifdef SMART_CASE_ENABLE
+        // Process smart case
+    switch (process_smart_case(keycode, record)) {
+        case PROCESS_RECORD_RETURN_TRUE:
+            return true;
+        case PROCESS_RECORD_RETURN_FALSE:
+            return false;
+        default:
+            break;
+    };
+#endif
+
+#ifdef SMART_THUMB_KEYS_ENABLE
+        // Process smart thumb keys
+    switch (process_smart_thumb_keys(keycode, record)) {
+        case PROCESS_RECORD_RETURN_TRUE:
+            return true;
+        case PROCESS_RECORD_RETURN_FALSE:
+            return false;
+        default:
+            break;
+    };
 #endif
 
 #ifdef CAPSWORD_ENABLE

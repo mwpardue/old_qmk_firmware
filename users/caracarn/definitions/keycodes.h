@@ -5,7 +5,7 @@
 // Custom keycodes
 
 enum {
-    DMY = SAFE_RANGE,
+    CUSTOM_KEYCODE_START = SAFE_RANGE,
 
 #ifdef MACRO_ENABLE
     DDS,
@@ -37,6 +37,14 @@ enum {
     SP_MOD, DEF_MOD,
 #endif
 
+#ifdef SMART_THUMB_KEYS_ENABLE
+    CAP_KEY,
+#endif
+
+#ifdef SMART_CASE_ENABLE
+    MC_CAPS, MC_WORD, MC_CAML, MC_SNAK, MC_KBAB,
+#endif
+
 #ifdef SHORTCUTS_ENABLE
     SS_MODP, SS_MODM,
 #endif
@@ -49,7 +57,7 @@ enum {
     SS_SWIN,
 #endif
 
-    DMMY
+    CUSTOM_KEYCODE_END
 };
 
 // Mod-taps
@@ -60,7 +68,7 @@ enum {
 //#define OSMLCTL OSM(MOD_LCTL)
 //#define OSMLALT OSM(MOD_LALT)
 //#define OSMRALT OSM(MOD_RALT)
-//#define OSMLGUI OSM(MOD_LGUI)
+#define OSMLGUI OSM(MOD_LGUI)
 //#define OSMRSFT OSM(MOD_RSFT)
 //#define OSMRCTL OSM(MOD_RCTL)
 //#define OSMRGUI OSM(MOD_RGUI)
@@ -149,3 +157,7 @@ enum {
 #define CB_NCGN LGUI(LSFT(KC_N))
 
 uint16_t extract_base_tapping_keycode(uint16_t keycode);
+
+#ifdef SMART_CASE_ENABLE
+    bool is_key_on_tap(uint16_t keycode);
+#endif
