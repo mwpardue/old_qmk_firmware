@@ -19,9 +19,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_BASE] = LAYOUT_ortho_5x12(
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-  ESC_CTL, KC_A,    CTL_S,   ALT_D,   GUI_F,   KC_G,    KC_H,    GUI_J,   ALT_K,   CTL_L,   TD_QUOT, KC_SCLN,
-  KC_LGUI, GUI_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    TD_COMH, KC_DOT,  KC_SLSH, GUI_ENT,
+  OSMLALT, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+  OSMLCTL, KC_A,    CTL_S,   ALT_D,   GUI_F,   KC_G,    KC_H,    GUI_J,   ALT_K,   CTL_L,   TD_QUOT, KC_SCLN,
+  OSMLGUI, GUI_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSMLSFT,
   _______, _______, _______, _______, TAB_NUM, CAP_KEY, BSP_SYM, SPC_MAC, _______, MOFUN,   _______, _______
 ),
 
@@ -44,16 +44,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYMBOL] = LAYOUT_ortho_5x12(
   TOBAS,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
   _______, KC_GESC, KC_GRV,  KC_TILDE,KC_BSLS, KC_TAB,  KC_AT,   KC_AMPR, KC_ASTR, KC_LPRN, KC_PSLS, _______,
-  _______, KC_AT,   TIPS,    KC_UNDS, KC_PIPE, TD_SCLE, TD_MCLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PDOT, _______,
+  _______, KC_AT,   TIPS,    KC_UNDS, KC_PIPE, KC_SCLN, TD_MCLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PDOT, _______,
   _______, TD_ANGB, TD_CURB, TD_PARB, TD_SQRB, KC_MINS, KC_EQL,  KC_EXLM, KC_AT,   KC_HASH, KC_ENT,  _______,
   _______, _______, _______, _______, _______, SPCSFT,  _______, KC_RPRN, _______, _______, _______, _______
 ),
 
 [_MACROS] = LAYOUT_ortho_5x12(
   TOBAS,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, KC_ESC,  _______, _______, _______, _______, _______, SS_SWIN, SS_SELW, SS_MODM, SS_MODP, _______,
-  _______, _______, _______, _______, FOPEN,   _______, KC_COLN, KC_S1,   KC_S2,   KC_S3,   KC_S4,   _______,
-  _______, _______, _______, _______, _______, _______, _______, SS3,     SS4,     _______, KC_ENT,  _______,
+  _______, VIMQ,    VIMWQ,   _______, _______, KC_S6,   SS3,     SS4,     ZOOMIN,  ZOOMOUT, TD_S78,  _______,
+  _______, TD_S15,  TD_S119, _______, FOPEN,   _______, KC_COLN, KC_S4,   _______, TD_S310, _______, _______,
+  _______, _______, _______, _______, _______, _______, KC_S12,  KC_S2,   SS_SWIN, SS_SELW, KC_ENT,  _______,
   _______, _______, _______, _______, SPCSFT,  KC_LSFT, TOBAS,   TOMAC,   _______, _______, _______, _______
 ),
 

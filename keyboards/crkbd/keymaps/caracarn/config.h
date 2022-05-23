@@ -17,6 +17,8 @@
 
 #define USE_SERIAL_PD2
 
+#define FORCE_NKRO
+
 #define LAYER_STATE_8BIT
 #define USB_POLLING_INTERVAL_MS 1
 
@@ -96,9 +98,10 @@
 
 
 #ifdef OLED_ENABLE
-#   define OLED_FONT_H "keyboards/crkbd/keymaps/caracarn/glcdfont.c"
+//#   define OLED_FONT_H "keyboards/crkbd/keymaps/caracarn/glcdfont.c"
 #   define OLED_TIMEOUT 30000
 #   define SPLIT_LAYER_STATE_ENABLE
+#   define SPLIT_LED_STATE_ENABLE
 #   define SPLIT_MODS_ENABLE
 #   define SPLIT_OLED_ENABLE
 #endif

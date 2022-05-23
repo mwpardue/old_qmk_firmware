@@ -2,6 +2,12 @@
 
 //extern os_t os;
 
+#ifdef CAPITALIZE_KEY_ENABLE
+    #ifdef SMART_THUMB_KEYS_ENABLE
+        #error Do not enable both Capitalize Key and Smart Thumb Key
+    #endif
+#endif
+
 void matrix_init_user(void) {
     // Enable or disable debugging
     debug_enable=false;
@@ -79,6 +85,7 @@ void matrix_scan_user(void) {
      case SPC_MAC:
      case BSP_SYM:
      case SPCSFT:
+     case ENT_FUN:
        return 0;  // Bypass Achordion for these keys.
    }
 
@@ -91,6 +98,14 @@ void matrix_scan_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ACHORDION_ENABLE
     if (!process_achordion(keycode, record)) { return false; }
+#endif
+
+#ifdef CAPSWORD_ENABLE
+    if (!process_caps_word(keycode, record)) { return false; }
+#endif
+
+#ifdef LAYER_LOCK_ENABLE
+      if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
 #endif
 
 #ifdef SMART_CASE_ENABLE
@@ -115,14 +130,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         default:
             break;
     };
-#endif
-
-#ifdef CAPSWORD_ENABLE
-    if (!process_caps_word(keycode, record)) { return false; }
-#endif
-
-#ifdef LAYER_LOCK_ENABLE
-      if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
 #endif
 
 #ifdef CAPSLOCK_TIMER_ENABLE

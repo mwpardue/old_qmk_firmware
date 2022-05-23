@@ -150,8 +150,7 @@ __attribute__((weak)) bool caps_word_press_user(uint16_t keycode) {
     case KC_UNDS:
     case KC_LPRN:
     case KC_RPRN:
-    case CAP_KEY:
-    case KC_LSFT:
+    case (SP_CAP & 0xff):
       return true;
 
     default:

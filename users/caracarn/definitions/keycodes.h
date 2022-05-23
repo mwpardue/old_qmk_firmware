@@ -11,6 +11,8 @@ enum {
     DDS,
     TIPS,
     FOPEN,
+    VIMWQ,
+    VIMQ,
 #endif
 
 #ifdef SECRETS_ENABLE
@@ -18,6 +20,14 @@ enum {
     KC_SECRET_2,
     KC_SECRET_3,
     KC_SECRET_4,
+    KC_SECRET_5,
+    KC_SECRET_6,
+    KC_SECRET_7,
+    KC_SECRET_8,
+    KC_SECRET_9,
+    KC_SECRET_10,
+    KC_SECRET_11,
+    KC_SECRET_12,
 #endif
 
 
@@ -38,7 +48,7 @@ enum {
 #endif
 
 #ifdef SMART_THUMB_KEYS_ENABLE
-    CAP_KEY,
+    CAP_KEY, SP_CAP,
 #endif
 
 #ifdef SMART_CASE_ENABLE
@@ -68,9 +78,9 @@ enum {
 
 // One-shot mods
 
-//#define OSMLSFT OSM(MOD_LSFT)
-//#define OSMLCTL OSM(MOD_LCTL)
-//#define OSMLALT OSM(MOD_LALT)
+#define OSMLSFT OSM(MOD_LSFT)
+#define OSMLCTL OSM(MOD_LCTL)
+#define OSMLALT OSM(MOD_LALT)
 //#define OSMRALT OSM(MOD_RALT)
 #define OSMLGUI OSM(MOD_LGUI)
 //#define OSMRSFT OSM(MOD_RSFT)
@@ -101,8 +111,8 @@ enum {
 #define BSP_SYM LT(_SYMBOL, KC_BSPC)
 //#define SYMENT LT(_SYMBOL, KC_ENT)
 #define TAB_NUM LT(_NUMPAD, KC_TAB)
-#define CAP_KEY LSFT_T(SP_CAP)
 #define ENT_FUN LT(_FUNCTION, KC_ENT)
+#define CAP_KEY LSFT_T(SP_CAP)
 
 // Layer transitions
 
@@ -136,6 +146,8 @@ enum {
 //#define PASTE LGUI(KC_V)
 #define PRVTAB LCTL(LSFT(KC_TAB))
 #define NXTTAB LCTL(KC_TAB)
+#define ZOOMIN LGUI(KC_PPLS)
+#define ZOOMOUT LGUI(KC_PMNS)
 //#define ESCSHFT LSFT_T(KC_ESC)
 #define ESC_CTL LCTL_T(KC_ESC)
 #define GUI_ENT LGUI_T(KC_ENT)

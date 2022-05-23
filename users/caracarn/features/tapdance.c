@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 
 #include "tapdance.h"
+#include "secrets.h"
 
 //extern os_t os;
 
@@ -48,9 +49,9 @@ void td_curly_braces(qk_tap_dance_state_t *state, void *user_data) {
             tap_code16(KC_RCBR);
             break;
         case TD_SINGLE_HOLD:
-            tap_code16(KC_END);
-            tap_code(KC_SPC);
             tap_code16(KC_LCBR);
+            tap_code16(KC_RCBR);
+            tap_code(KC_LEFT);
             break;
         default: break;
     }
@@ -65,6 +66,11 @@ void td_square_brackets(qk_tap_dance_state_t *state, void *user_data) {
         case TD_DOUBLE_TAP:
             tap_code16(KC_RBRC);
             break;
+        case TD_SINGLE_HOLD:
+            tap_code16(KC_LBRC);
+            tap_code16(KC_RBRC);
+            tap_code(KC_LEFT);
+            break;
         default: break;
     }
 }
@@ -78,6 +84,11 @@ void td_parentesis(qk_tap_dance_state_t *state, void *user_data) {
         case TD_DOUBLE_TAP:
             tap_code16(KC_RPRN);
             break;
+        case TD_SINGLE_HOLD:
+            tap_code16(KC_LPRN);
+            tap_code16(KC_RPRN);
+            tap_code(KC_LEFT);
+            break;
         default: break;
     }
 }
@@ -90,6 +101,11 @@ void td_angle_brackets(qk_tap_dance_state_t *state, void *user_data) {
             break;
         case TD_DOUBLE_TAP:
             tap_code16(KC_GT);
+            break;
+        case TD_SINGLE_HOLD:
+            tap_code16(KC_LT);
+            tap_code16(KC_GT);
+            tap_code(KC_LEFT);
             break;
         default: break;
     }
@@ -110,41 +126,41 @@ void td_minus_colon(qk_tap_dance_state_t *state, void *user_data) {
 
 // Semicolon at the end
 
-void td_semicolon(qk_tap_dance_state_t *state, void *user_data) {
-    tap_state.state = dance_state(state);
-    switch (tap_state.state) {
-        case TD_SINGLE_TAP:
-            tap_code(KC_SCLN);
-            break;
-        case TD_SINGLE_HOLD:
-            tap_code16(KC_END);
-            tap_code(KC_SCLN);
-            break;
-        default: break;
-    }
-}
+// void td_semicolon(qk_tap_dance_state_t *state, void *user_data) {
+//     tap_state.state = dance_state(state);
+//     switch (tap_state.state) {
+//         case TD_SINGLE_TAP:
+//             tap_code(KC_SCLN);
+//             break;
+//         case TD_SINGLE_HOLD:
+//             tap_code16(KC_END);
+//             tap_code(KC_SCLN);
+//             break;
+//         default: break;
+//     }
+// }
 
 // Comma leader
 
-void td_comma_hyper(qk_tap_dance_state_t *state, void *user_data) {
-    tap_state.state = dance_state(state);
-    bool isShifted = get_mods() & MOD_MASK_SHIFT ||
-            get_oneshot_mods() & MOD_MASK_SHIFT ||
-            get_oneshot_locked_mods() & MOD_MASK_SHIFT;
-    switch (tap_state.state) {
-        case TD_SINGLE_TAP:
-            tap_code(KC_COMM);
-            break;
-        case TD_DOUBLE_TAP:
-            if (!isShifted) {
-                set_oneshot_mods(MOD_HYPR);
-            } else {
-                tap_code(KC_COMM);
-            }
-            break;
-        default: break;
-    }
-}
+// void td_comma_hyper(qk_tap_dance_state_t *state, void *user_data) {
+//     tap_state.state = dance_state(state);
+//     bool isShifted = get_mods() & MOD_MASK_SHIFT ||
+//             get_oneshot_mods() & MOD_MASK_SHIFT ||
+//             get_oneshot_locked_mods() & MOD_MASK_SHIFT;
+//     switch (tap_state.state) {
+//         case TD_SINGLE_TAP:
+//             tap_code(KC_COMM);
+//             break;
+//         case TD_DOUBLE_TAP:
+//             if (!isShifted) {
+//                 set_oneshot_mods(MOD_HYPR);
+//             } else {
+//                 tap_code(KC_COMM);
+//             }
+//             break;
+//         default: break;
+//     }
+// }
 
 // Dot dot new sentence
 
@@ -185,6 +201,58 @@ void td_quotes(qk_tap_dance_state_t *state, void *user_data) {
             break;
         case TD_TRIPLE_TAP:
             tap_code16(KC_COLN);
+            break;
+        default: break;
+    }
+}
+
+void td_secret15(qk_tap_dance_state_t *state, void *user_data) {
+    tap_state.state = dance_state(state);
+    switch (tap_state.state) {
+        case TD_SINGLE_TAP:
+            send_string(secrets[0]);
+            break;
+        case TD_DOUBLE_TAP:
+            send_string(secrets[4]);
+            break;
+        default: break;
+    }
+}
+
+void td_secret78(qk_tap_dance_state_t *state, void *user_data) {
+    tap_state.state = dance_state(state);
+    switch (tap_state.state) {
+        case TD_SINGLE_TAP:
+            send_string(secrets[6]);
+            break;
+        case TD_DOUBLE_TAP:
+            send_string(secrets[7]);
+            break;
+        default: break;
+    }
+}
+
+void td_secret119(qk_tap_dance_state_t *state, void *user_data) {
+    tap_state.state = dance_state(state);
+    switch (tap_state.state) {
+        case TD_SINGLE_TAP:
+            send_string(secrets[10]);
+            break;
+        case TD_DOUBLE_TAP:
+            send_string(secrets[8]);
+            break;
+        default: break;
+    }
+}
+
+void td_secret310(qk_tap_dance_state_t *state, void *user_data) {
+    tap_state.state = dance_state(state);
+    switch (tap_state.state) {
+        case TD_SINGLE_TAP:
+            send_string(secrets[2]);
+            break;
+        case TD_DOUBLE_TAP:
+            send_string(secrets[9]);
             break;
         default: break;
     }
@@ -250,8 +318,12 @@ void td_caps_key_reset(qk_tap_dance_state_t *state, void *user_data) {
 // Tap dance declarations
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [COM_HYP] = ACTION_TAP_DANCE_FN(td_comma_hyper),
-    [SCL_END] = ACTION_TAP_DANCE_FN(td_semicolon),
+    //[COM_HYP] = ACTION_TAP_DANCE_FN(td_comma_hyper),
+    //[SCL_END] = ACTION_TAP_DANCE_FN(td_semicolon),
+    [SEC1_5] = ACTION_TAP_DANCE_FN(td_secret15),
+    [SEC7_8] = ACTION_TAP_DANCE_FN(td_secret78),
+    [SEC11_9] = ACTION_TAP_DANCE_FN(td_secret119),
+    [SEC3_10] = ACTION_TAP_DANCE_FN(td_secret310),
     [BRT_CUR] = ACTION_TAP_DANCE_FN(td_curly_braces),
     [BRT_SQR] = ACTION_TAP_DANCE_FN(td_square_brackets),
     [BRT_PAR] = ACTION_TAP_DANCE_FN(td_parentesis),

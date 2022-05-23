@@ -29,6 +29,14 @@ combo_t key_combos[COMBO_COUNT] = {
 
 extern os_t os;
 
+#ifndef DEFAULT_MOD_ENABLE
+    #ifndef SHORTCUTS_ENABLE
+        bool should_send_ctrl(bool isWindowsOrLinux, bool isOneShotShift) {
+            return (isWindowsOrLinux && !isOneShotShift) || (!isWindowsOrLinux && isOneShotShift);
+        }
+    #endif
+#endif
+
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     uint16_t key;
     uint8_t idx = 0;

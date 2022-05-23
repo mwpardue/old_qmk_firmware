@@ -9,8 +9,12 @@
 //#include "dynamic_macro.h"
 
 enum {
-    COM_HYP,
-    SCL_END,
+    //COM_HYP,
+    //SCL_END,
+    SEC1_5,
+    SEC7_8,
+    SEC11_9,
+    SEC3_10,
     BRT_CUR,
     BRT_SQR,
     BRT_PAR,
@@ -21,8 +25,12 @@ enum {
     MIN_CLN
 };
 
-#define TD_COMH TD(COM_HYP)
-#define TD_SCLE TD(SCL_END)
+//#define TD_COMH TD(COM_HYP)
+//#define TD_SCLE TD(SCL_END)
+#define TD_S15 TD(SEC1_5)
+#define TD_S78 TD(SEC7_8)
+#define TD_S119 TD(SEC11_9)
+#define TD_S310 TD(SEC3_10)
 #define TD_CURB TD(BRT_CUR)
 #define TD_SQRB TD(BRT_SQR)
 #define TD_PARB TD(BRT_PAR)

@@ -26,6 +26,10 @@
     #define TAPPING_TOGGLE 1
     #define TAPPING_TERM 175
 
+#ifdef CUSTOM_ONESHOT_MODS_ENABLE
+    #define CUSTOM_ONESHOT_TIMEOUT 2000
+#endif
+
 // Configure leader key
 #ifdef LEADER_ENABLE
     #define LEADER_TIMEOUT 1000

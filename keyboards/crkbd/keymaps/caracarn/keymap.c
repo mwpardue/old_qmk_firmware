@@ -15,14 +15,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT_split_3x6_3(
   LLOCK,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    LLOCK,
   ESC_CTL, KC_A,    CTL_S,   ALT_D,   GUI_F,   KC_G,                         KC_H,    GUI_J,   ALT_K,   CTL_L,   TD_QUOT, KC_SCLN,
-  KC_LALT, GUI_Z,   KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    TD_COMH, KC_DOT,  KC_SLSH, GUI_ENT,
+  TD_S15,  GUI_Z,   KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                       OSMLGUI, TAB_NUM, CAP_KEY,    BSP_SYM, SPC_MAC, ENT_FUN
 ),
 
 [_NUMPAD] = LAYOUT_split_3x6_3(
-  _______, KC_TAB,  PRVTAB,  KC_UP,   NXTTAB,  _______,                      KC_AT,   KC_7,    KC_8,    KC_9,    KC_PSLS, _______,
+  _______, KC_TAB,  PRVTAB,  KC_UP,   NXTTAB,  TIPS,                         KC_AT,   KC_7,    KC_8,    KC_9,    KC_PSLS, _______,
   _______, KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT, _______,                      TD_MCLN, GUI_4,   ALT_5,   CTL_6,   KC_PDOT, _______,
-  _______, _______, _______, LCTLC,   _______, KC_ENT,                       KC_EQL,  KC_1,    KC_2,    KC_3,    KC_ENT,  _______,
+  _______, SS_SWIN, _______, LCTLC,   _______, KC_ENT,                       KC_EQL,  KC_1,    KC_2,    KC_3,    KC_ENT,  _______,
                                       _______, TOBAS,   _______,    SPCSFT,  KC_0,    _______
 ),
 
@@ -34,16 +34,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_SYMBOL] = LAYOUT_split_3x6_3(
-  _______, KC_ESC,  KC_GRV,  KC_TILDE,KC_BSLS, KC_TAB,                       KC_AT,   KC_AMPR, KC_ASTR, KC_LPRN, KC_PSLS, _______,
-  _______, KC_AT,   TIPS,    KC_UNDS, KC_PIPE, TD_SCLE,                      TD_MCLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PDOT, _______,
-  _______, TD_ANGB, TD_CURB, TD_PARB, TD_SQRB, KC_MINS,                      KC_EQL,  KC_EXLM, KC_AT,   KC_HASH, KC_ENT,  _______,
+  _______, KC_ESC,  KC_GRV,  KC_TILD, KC_BSLS, KC_TAB,                       KC_AT,   KC_AMPR, KC_ASTR, KC_LPRN, KC_PSLS, _______,
+  _______, KC_AT,   TIPS,    KC_UNDS, KC_PIPE, KC_SCLN,                      TD_MCLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PDOT, _______,
+  _______, TD_CURB, TD_PARB, TD_SQRB, TD_ANGB, KC_MINS,                      KC_EQL,  KC_EXLM, KC_AT,   KC_HASH, KC_ENT,  _______,
                                       _______, TOBAS,   SPCSFT,     _______, KC_RPRN, _______
 ),
 
 [_MACROS] = LAYOUT_split_3x6_3(
-  _______, KC_ESC,  _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, FOPEN,   _______,                      KC_COLN, KC_S1,   KC_S2,   KC_S3,   KC_S4,   _______,
-  _______, _______, _______, _______, _______, _______,                      _______, SS3,     SS4,     _______, KC_ENT,  _______,
+  _______, VIMQ,    VIMWQ,   _______, _______, KC_S6,                        SS3,     SS4,     ZOOMIN,  ZOOMOUT, TD_S78,  _______,
+  _______, TD_S15,  TD_S119, _______, FOPEN,   _______,                      KC_COLN, KC_S4,   _______, TD_S310, _______, _______,
+  _______, _______, _______, _______, _______, _______,                      KC_S12,  KC_S2,   _______, _______, KC_ENT,  _______,
                                       _______, SPCSFT,  KC_LSFT,    TOBAS,   TOMAC,   _______
 ),
 
@@ -56,3 +56,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 };
+
+
+#ifdef OLED_ENABLE
+const char *read_logo(void);
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    #ifdef OLED_FONT_ENABLE
+    // face the logo inward on the slave side
+    return is_keyboard_master() ? OLED_ROTATION_270 : ( is_keyboard_left() ? rotation : rotation ^ OLED_ROTATION_180 );
+	#else
+	return OLED_ROTATION_270;
+    #endif // OLED_FONT_ENABLE
+}
+
+bool oled_task_user(void) {
+  //if (is_keyboard_master()) {
+    // If you want to change the display of OLED, you need to change here
+
+    #ifdef OLED_FONT_ENABLE
+	// 5 chars x 16 lines when using strings and default font
+    write_layer_state();
+    oled_advance_page(true);
+    write_host_led_state();
+    oled_advance_page(true);
+	write_mod_state();
+    //oled_advance_page(true);
+	//oled_write_ln(read_keylog(), false);
+    //oled_write_ln(read_timelog(), false);
+	#else
+    render_crkbd_logo( 32 );
+    render_box_top( 96 );
+	render_layer_state( 128 );
+    render_box_bottom( 160 );
+	//render_host_led_state( 96 );
+    render_box_top( 224 );
+	render_mod_state( 256 );
+    render_box_bottom( 288 );
+    #endif // OLED_FONT_ENABLE
+//   } else {
+//     #ifdef OLED_FONT_ENABLE
+//     oled_write(read_logo(), false);
+//     #endif // OLED_FONT_ENABLE
+//   }
+    return false;
+}
+#endif // OLED_ENABLE

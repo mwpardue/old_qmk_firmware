@@ -59,10 +59,10 @@ void clear_locked_and_oneshot_mods(void) {
         clear_oneshot_mods();
         clear_oneshot_locked_mods();
         unregister_mods(MOD_LSFT);
-        unregister_mods(MOD_LCTL);
-        unregister_mods(MOD_LALT);
-        unregister_mods(MOD_RALT);
-        unregister_mods(MOD_LGUI);
+        // unregister_mods(MOD_LCTL);
+        // unregister_mods(MOD_LALT);
+        // unregister_mods(MOD_RALT);
+        // unregister_mods(MOD_LGUI);
     }
 }
 
