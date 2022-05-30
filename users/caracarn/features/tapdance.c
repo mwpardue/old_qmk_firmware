@@ -111,18 +111,18 @@ void td_angle_brackets(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void td_minus_colon(qk_tap_dance_state_t *state, void *user_data) {
-    tap_state.state = dance_state(state);
-    switch (tap_state.state) {
-        case TD_SINGLE_TAP:
-            tap_code16(KC_COLN);
-            break;
-        case TD_DOUBLE_TAP:
-            tap_code16(KC_MINS);
-            break;
-        default: break;
-    }
-}
+// void td_minus_colon(qk_tap_dance_state_t *state, void *user_data) {
+//     tap_state.state = dance_state(state);
+//     switch (tap_state.state) {
+//         case TD_SINGLE_TAP:
+//             tap_code16(KC_COLN);
+//             break;
+//         case TD_DOUBLE_TAP:
+//             tap_code16(KC_MINS);
+//             break;
+//         default: break;
+//     }
+// }
 
 // Semicolon at the end
 
@@ -330,6 +330,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [BRT_ANG] = ACTION_TAP_DANCE_FN(td_angle_brackets),
     // [DOT_DOT] = ACTION_TAP_DANCE_FN(td_dot_dot),
     // [CAP_KEY] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_caps_key_finished, td_caps_key_reset),
-    [SDB_QUO] = ACTION_TAP_DANCE_FN(td_quotes),
-    [MIN_CLN] = ACTION_TAP_DANCE_FN(td_minus_colon)
+    [SDB_QUO] = ACTION_TAP_DANCE_FN(td_quotes)
+    //[MIN_CLN] = ACTION_TAP_DANCE_FN(td_minus_colon)
 };

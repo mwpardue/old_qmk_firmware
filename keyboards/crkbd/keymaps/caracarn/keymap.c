@@ -20,23 +20,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_NUMPAD] = LAYOUT_split_3x6_3(
-  _______, KC_TAB,  PRVTAB,  KC_UP,   NXTTAB,  TIPS,                         KC_AT,   KC_7,    KC_8,    KC_9,    KC_PSLS, _______,
-  _______, KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT, _______,                      TD_MCLN, GUI_4,   ALT_5,   CTL_6,   KC_PDOT, _______,
+  _______, KC_TAB,  PRVTAB,  KC_UP,   NXTTAB,  TIPS,                         KC_MINS, KC_7,    KC_8,    KC_9,    KC_PSLS, _______,
+  _______, KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT, KC_AT,                        KC_COLN, GUI_4,   ALT_5,   CTL_6,   KC_PDOT, _______,
   _______, SS_SWIN, _______, LCTLC,   _______, KC_ENT,                       KC_EQL,  KC_1,    KC_2,    KC_3,    KC_ENT,  _______,
                                       _______, TOBAS,   _______,    SPCSFT,  KC_0,    _______
 ),
 
 [_HEX] = LAYOUT_split_3x6_3(
-  _______, KC_TAB,  _______, _______, _______, KC_MINS,                      KC_AT,   KC_7,    KC_8,    KC_9,    KC_BSPC, _______,
-  _______, _______, KC_SLSH, _______, _______, KC_COLN,                      TD_MCLN, KC_4,    KC_5,    KC_6,    KC_PDOT, _______,
+  _______, KC_TAB,  _______, _______, _______, KC_MINS,                      KC_MINS, KC_7,    KC_8,    KC_9,    KC_BSPC, _______,
+  _______, _______, KC_SLSH, _______, _______, KC_COLN,                      KC_COLN, KC_4,    KC_5,    KC_6,    KC_PDOT, _______,
   _______, _______, KC_UNDS, _______, KC_DOT,  _______,                      KC_UNDS, KC_1,    KC_2,    KC_3,    KC_ENT,  _______,
                                       TOBAS,   TOBAS,   SPCSFT,     KC_BSPC, KC_0,    _______
 ),
 
 [_SYMBOL] = LAYOUT_split_3x6_3(
-  _______, KC_ESC,  KC_GRV,  KC_TILD, KC_BSLS, KC_TAB,                       KC_AT,   KC_AMPR, KC_ASTR, KC_LPRN, KC_PSLS, _______,
-  _______, KC_AT,   TIPS,    KC_UNDS, KC_PIPE, KC_SCLN,                      TD_MCLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PDOT, _______,
-  _______, TD_CURB, TD_PARB, TD_SQRB, TD_ANGB, KC_MINS,                      KC_EQL,  KC_EXLM, KC_AT,   KC_HASH, KC_ENT,  _______,
+  _______, KC_ESC,  KC_GRV,  KC_TILD, KC_BSLS, KC_TAB,                       KC_UNDS, KC_AMPR, KC_ASTR, KC_LPRN, KC_PSLS, _______,
+  _______, KC_AT,   TIPS,    KC_UNDS, KC_PIPE, KC_COLN,                      KC_SCLN, KC_DLR,  KC_PERC, KC_CIRC, KC_SCLN, _______,
+  _______, TD_CURB, TD_SQRB, TD_PARB, TD_ANGB, KC_MINS,                      KC_PLUS, KC_EXLM, KC_AT,   KC_HASH, KC_ENT,  _______,
                                       _______, TOBAS,   SPCSFT,     _______, KC_RPRN, _______
 ),
 
@@ -48,9 +48,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_FUNCTION] = LAYOUT_split_3x6_3( \
-  _______, RESET,   _______, DEBUG,   EEP_RST, TERM_OFF,                     TERM_ON, _______, _______, _______, _______, _______,  \
+  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
   _______, KC_VOLU, MACSLEP, _______, TOFUN,   AG_NORM,                      AG_SWAP, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI,\
-  _______, KC_VOLD, KC_MPLY, KC_MPRV, KC_MNXT, _______,                      MACSLEP, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,\
+  _______, KC_VOLD, KC_MPLY, KC_MPRV, KC_MNXT, _______,                      _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,\
                                       TOHEX,   TONUM,   TOFUN,      TOSYM,   TOMAC,   TOBAS \
 )
 

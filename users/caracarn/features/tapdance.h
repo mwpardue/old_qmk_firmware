@@ -22,7 +22,7 @@ enum {
     // DOT_DOT,
     // CAP_KEY,
     SDB_QUO,
-    MIN_CLN
+    //MIN_CLN
 };
 
 //#define TD_COMH TD(COM_HYP)
@@ -38,7 +38,7 @@ enum {
 // #define TD_DOTD TD(DOT_DOT)
 // #define TD_CAPK TD(CAP_KEY)
 #define TD_QUOT TD(SDB_QUO)
-#define TD_MCLN TD(MIN_CLN)
+//#define TD_MCLN TD(MIN_CLN)
 
 typedef enum {
     TD_NONE,
