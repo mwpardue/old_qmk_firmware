@@ -26,7 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SERIAL_USART_TIMEOUT 20
 
 /* ws2812 RGB LED */
-#define RGB_DI_PIN      D3
+#define RGB_DI_PIN      A10
+#define WS2812_PWM_DRIVER PWMD1
+#define WS2812_PWM_CHANNEL 3
+#define WS2812_PWM_PAL_MODE 1
+#define WS2812_DMA_STREAM STM32_DMA2_STREAM5
+#define WS2812_DMA_CHANNEL 6
 
 #ifdef RGBLIGHT_ENABLE
 #    define RGBLED_NUM 54 // Number of LEDs
@@ -83,8 +88,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // I2C Configuration (optional example, can use for OLED, etc.)
 #define I2C_DRIVER I2CD1
-#define I2C_SCL_PIN B6
-#define I2C_SDA_PIN B9
+#define I2C1_SCL_PIN B6
+#define I2C1_SDA_PIN B9
 #define I2C_SCL_PAL_MODE 4
 #define I2C_SDA_PAL_MODE 4
 

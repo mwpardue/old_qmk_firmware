@@ -5,9 +5,9 @@ BOARD = BONSAI_C4
 # Bootloader selection
 BOOTLOADER = stm32-dfu
 
-#RGBLIGHT_ENABLE = yes        # Enable keyboard RGB underglow
-#RGBLIGHT_DRIVER = WS2812
-#WS2812_DRIVER = pwm
+RGBLIGHT_ENABLE = yes        # Enable keyboard RGB underglow
+RGBLIGHT_DRIVER = WS2812
+WS2812_DRIVER = pwm
 
 
 EEPROM_DRIVER = spi

@@ -98,7 +98,7 @@
 
 
 #ifdef OLED_ENABLE
-//#   define OLED_FONT_H "keyboards/crkbd/keymaps/caracarn/glcdfont.c"
+#   define OLED_FONT_H "keyboards/crkbd/keymaps/caracarn/glcdfont.c"
 #   define OLED_TIMEOUT 30000
 #   define SPLIT_LAYER_STATE_ENABLE
 #   define SPLIT_LED_STATE_ENABLE
