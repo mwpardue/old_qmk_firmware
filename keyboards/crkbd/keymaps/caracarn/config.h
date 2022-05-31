@@ -13,7 +13,7 @@
 // #define EE_HANDS
 
 #undef USE_I2C
-#undef SSD1306OLED
+//#undef SSD1306OLED
 
 #define USE_SERIAL_PD2
 
@@ -28,7 +28,7 @@
 
 //#define RGBLIGHT_SPLIT
 
-//#define SSD1306OLED
+#define SSD1306OLED
 
 #ifdef RGB_MATRIX_ENABLE
     #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE

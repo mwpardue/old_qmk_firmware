@@ -23,6 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef KEYBOARD_crkbd_r2g
 #    include "r2g.h"
 #endif
-
+#ifdef KEYBOARD_crkbd_c4
+#   include "c4.h"
+#endif
 
 #include "quantum.h"
