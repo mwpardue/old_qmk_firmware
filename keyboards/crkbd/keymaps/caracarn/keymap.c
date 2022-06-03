@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NUMPAD] = LAYOUT_split_3x6_3(
   _______, KC_TAB,  PRVTAB,  KC_UP,   NXTTAB,  TIPS,                         KC_MINS, KC_7,    KC_8,    KC_9,    KC_PSLS, _______,
   _______, KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT, KC_AT,                        KC_COLN, GUI_4,   ALT_5,   CTL_6,   KC_PDOT, _______,
-  _______, SS_SWIN, _______, LCTLC,   _______, KC_ENT,                       KC_EQL,  KC_1,    KC_2,    KC_3,    KC_ENT,  _______,
+  _______, SS_SWIN, KC_BTN2, LCTLC,   KC_BTN1, KC_ENT,                       KC_EQL,  KC_1,    KC_2,    KC_3,    KC_ENT,  _______,
                                       _______, TOBAS,   _______,    SPCSFT,  KC_0,    _______
 ),
 
