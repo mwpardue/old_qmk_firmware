@@ -14,4 +14,6 @@ Flashing example for this keyboard:
 
     make crkbd/c4:default:flash
 
+For instructions on how to install the Bonsai C4 for use with CRKBD, see the [conversion guide](https://github.com/mwpardue/qmk_firmware/blob/bonsai_c4/keyboards/crkbd/c4/c4conversion.md).
+
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
