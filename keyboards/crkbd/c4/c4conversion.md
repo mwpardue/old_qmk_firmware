@@ -24,7 +24,7 @@ This guide will show you how to install a Bonsai C4 on a CRKBD v3 PCB. This has 
 |Wire|6|Used to "jumper" from one pin on MCU to another, I used wires from a Cat5e cable.|
 |CRKBD v3 PCB|2||
 
-*According to QMK [documentation](https://docs.qmk.fm/#/feature_split_keyboard?id=i2c-wiring) 4.7Kohm is ideal for I2C but as long as total resistance is within 2.2K-10Kohm it should work. Only 4.7K-5Kohm resistors have been tested with Bonsai C4 at time of writing.
+*According to QMK [documentation](https://docs.qmk.fm/#/feature_split_keyboard?id=i2c-wiring) 4.7Kohm is ideal for I2C but as long as total resistance is within 2.2K-10Kohm it should work. 4.7K and 10K resistors have been tested and found working with Bonsai C4 at time of writing.
 
 # Building the CRKBD Keyboard
 Because the C4 has differently named pins from the Pro-Micros and the CRKBD board usually uses Pro-Micro pin names, depending on your specific board, I will be using the following notation in an attempt to keep it straight. Pins on the Bonsai C4 will be in parentheses. Pins on the CRKBD board will be in square brackets. I'll also try to keep the language used non-ambiguous. All steps except the Split Communications step need to be performed on both halves of the keyboard.
@@ -38,13 +38,13 @@ If your board doesn't have pin names on the silkscreen you can find the names I 
 <a href="../images/crkbd_pins.png"><img src="../images/crkbd_pins.png" width="50%"></a>
 </p>
 
-## RGB LED Power
+## RGB LED Data In Voltage
 
 <p align="center">
 <a href="../images/rgb_jumper.png"><img src="../images/rgb_jumper.png" width="50%"></a>
 </p>
 
-My board uses WS2812 LEDs. These LEDs require 5v power, however the corresponding pin on the C4 only supplies 3.3v, so you have to bring power in from elsewhere on the C4. Pin (A10) supplies 5v so you'll need to solder a wire into the Bonsai (A10) pad and use it in the board's [D3] pad. I used an internal wire from a Cat5e cable because I could strip back just enough insulation for the solder joints but leave enough to insure the cable didn't short out against something else. If your board uses different LEDs you'll need to check the documentation to see what voltage they require. If they are able to run on 3.3v then you don't need to jumper from the Bonsai C4's (A10), instead you can use Bonsai's (B7). You will have to edit the crkbd/c4/config.h file from `define RGB_DI_PIN A10` to `B7`.
+Most RGB LEDs, such as the WS2812 LEDs on the Keyhive Corne kit, require 5v on the data line<sup>[1](./c4conversion.md#Notes)</sup>. The corresponding pin on the C4 only supplies 3.3v, though, so you have to bring the correct voltage in from elsewhere on the C4. Pin (A10) supplies 5v so you'll need to solder a wire into the Bonsai (A10) pad and use it in the board's [D3] pad. I used an internal wire from a Cat5e cable because I could strip back just enough insulation for the solder joints but leave enough to ensure the cable didn't short out against something else. If you don't have any RGB LEDs on your board then you can skip this section, just leave both (A10) and (B7) unconnected.
 
 
 ## Board Power
@@ -118,12 +118,25 @@ To flash the default keymap for a C4 Corne, assuming the same folder structure a
 make crkbd/c4:default:flash
 ```
 
+# Troubleshooting
+If you have completed installation of the Bonsai C4 and something isn't working, here are a few troubleshooting steps you can take.
+
+## RGB Not Lighting Up Correctly
+Ensure you've got good solder joints where your jumper wire is connected from (A10) to [D3]. If you have a multimeter you can test continuity from the (A10) pin to the underside of the board where you soldered [D3], either the socket or MCU, into the board. If you have good solder joints you should have continuity from one point to the other. Also search Google for 'cold solder joints' and make sure your joints don't appear dull, malformed, or incomplete. If unsure you can reflow the joint with your soldering iron or add a touch more solder. 
+
+## Split Communications and/or OLED Not Working
+If you're having trouble with the two halves of your keyboard not communicating or the OLED screen(s) not showing up properly then the most likely source of the trouble is the resistor(s). While the solder jumper pads make those pins much more easily accessible, it can also be easy to accidentally add too much solder and jumper the pads together. Look closely at the solder joint and make sure this hasn't happened to you. You can use a multimeter to determine if they are shorted or not by checking continuity between the left-most pad and the middle pad (oriented with the USB port at the top). If the left-most pad and center pad on any solder jumper have continuity then you have too much solder in the middle. You can remove some excess solder with a solder sucker or solder wick or other techniques available online. 
+
+You'll also want to confirm the correct resistance from pin to pin. If you use your multimeter to check continuity from the (3.3V) pin to the destination pin ((A15), (B6), (B9)) then the resistance shown on the multimeter should equal the value of the resistor you used. Eg. a 4.7K resistor for split comms should show 4.7Kohms resistance from (3.3V) to (A15). If you get a different value, check your solder joints and if all else fails you might have a bad resistor.
+
+# Help
+If you have questions about this guide or have a unique situation and need some help, please feel free to reach out to me. I am Perrin on the customMK [Discord](https://discord.gg/mGTq3wRQdx) server, and the creator of the C4 is very helpful and responsive on Discord as well. The rest of the members on the Discord server are friendly and willing to help, too, so I'm sure you can find your answers there.
+
+# Notes
+<sup>1</sup>If your board uses different LEDs and you are 100% certain they require 3.3v then you don't need to jumper from the Bonsai C4's (A10), instead you can use Bonsai's (B7). You will have to edit the crkbd/c4/config.h file from `define RGB_DI_PIN A10` to `B7`.
 # Credits
 None of this would be possible without the following:
 - [QMK Firmware](https://github.com/qmk/qmk_firmware), and all the developers that have contributed to build it into the firmware we have today. 
 - [foostan](https://github.com/foostan/crkbd/tree/main/corne-cherry/pcb), creator of the CRKBD keyboard
 - [customMK](https://shop.custommk.com/products/bonsai-c4-microcontroller-board), designer and seller of the Bonsai C4.
 - customMK's [Discord](https://discord.gg/mGTq3wRQdx) where the folks are extremely helpful and without whom I never would have figured out how to make the C4 work on the CRKBD. I might be writing the guide but customMK deserves all the credit.
-
-# Help
-If you have questions about this guide or have a unique situation and need some help, please feel free to reach out to me. I am Perrin on the customMK [Discord](https://discord.gg/mGTq3wRQdx) server, and the creator of the C4 is very helpful and responsive on Discord as well. The rest of the members on the Discord server are friendly and willing to help, too, so I'm sure you can find your answers there.
