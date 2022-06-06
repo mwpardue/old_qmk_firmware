@@ -6,7 +6,7 @@
 
 This guide will show you how to install a Bonsai C4 on a CRKBD v3 PCB. This has so far only been attempted on a Cherry MX version of the board, however it should be the same with the Choc version. The Bonsai C4 is an STM32F411 microcontroller designed by [customMK](https://shop.custommk.com) as a drop-in replacement for the Pro-Micro and it's clones. As QMK becomes more feature-rich and those features grow in complexity and size, so too do our flash memory requirements. The Bonsai C4 provides 512kB of program memory and 16MB of external flash storage, as opposed to the 28kB of QMK-usable storage on Pro-Micros, providing enough memory for all the QMK features you could hope for and hopefully making your board future-proof for some time to come.
 
-Please note that, while I am confident you'll have no problems if you follow this guide closely, I take no responsibility for any damage your board may suffer from attempting this installation. If you're unsure of how to do something, ask first.
+Please note that, while I am confident you'll have no problems if you follow this guide closely, I take no responsibility for any damage your keyboard or components may suffer from attempting this installation. If you're unsure of how to do something, ask first.
 
 ## Requirements
 
@@ -25,7 +25,7 @@ Please note that, while I am confident you'll have no problems if you follow thi
 |4.7Kohm Resistor<sup>[1](./c4conversion.md#Notes)</sup>|5|If not using OLED screens then only 1 resistor is required.|
 |Wire|6|Used to "jumper" from one pin on MCU to another, I used wires from a Cat5e cable.|
 |CRKBD v3 PCB|2||
-|Taller OLED Standoffs|4|The added resistors can increase the controller's height and require modification OLED screens/covers|
+|Taller OLED Standoffs|4|The added resistors can increase the controller's height and require modification OLED screens/covers, see [OLED Section](./c4conversion.md##Oled I2C Resistors)|
 
 # Building the CRKBD Keyboard
 Because the C4 has differently named pins from the Pro-Micros and the CRKBD board usually uses Pro-Micro pin names, depending on your specific board, I will be using the following notation in an attempt to keep it straight. Pins on the Bonsai C4 will be in parentheses. Pins on the CRKBD board will be in square brackets. I'll also try to keep the language used non-ambiguous. All steps except the Split Communications step need to be performed on both halves of the keyboard.
