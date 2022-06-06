@@ -25,7 +25,7 @@ Please note that, while I am confident you'll have no problems if you follow thi
 |4.7Kohm Resistor<sup>[1](./c4conversion.md#Notes)</sup>|5|If not using OLED screens then only 1 resistor is required.|
 |Wire|6|Used to "jumper" from one pin on MCU to another, I used wires from a Cat5e cable.|
 |CRKBD v3 PCB|2||
-|Taller OLED Standoffs|4|The added resistors can increase the controller's height and require modification OLED screens/covers, see [OLED Section](./c4conversion.md#oled-i2c-resistors)|
+|Taller OLED Standoffs|4|The added resistors can increase the controller's height and require modification OLED screens/covers, see [MCU Installation](./c4conversion.md#mcu-installation)|
 
 # Building the CRKBD Keyboard
 Because the C4 has differently named pins from the Pro-Micros and the CRKBD board usually uses Pro-Micro pin names, depending on your specific board, I will be using the following notation in an attempt to keep it straight. Pins on the Bonsai C4 will be in parentheses. Pins on the CRKBD board will be in square brackets. I'll also try to keep the language used non-ambiguous. All steps except the Split Communications step need to be performed on both halves of the keyboard.
