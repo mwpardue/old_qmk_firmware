@@ -20,11 +20,9 @@ This guide will show you how to install a Bonsai C4 on a CRKBD v3 PCB. This has 
 |Name|Qty|Notes|
 |:-|:-|:-|
 |Bonsai C4 Compact Edition|2|MCU can be found at [CustomMK](https://shop.custommk.com/products/bonsai-c4-microcontroller-board)|
-|4.7Kohm Resistor*|5|If not using OLED screens then only 1 resistor is required.|
+|4.7Kohm Resistor<sup>[1](./c4conversion.md#Notes)</sup>|5|If not using OLED screens then only 1 resistor is required.|
 |Wire|6|Used to "jumper" from one pin on MCU to another, I used wires from a Cat5e cable.|
 |CRKBD v3 PCB|2||
-
-*According to QMK [documentation](https://docs.qmk.fm/#/feature_split_keyboard?id=i2c-wiring) 4.7Kohm is ideal for I2C but as long as total resistance is within 2.2K-10Kohm it should work. 4.7K and 10K resistors have been tested and found working with Bonsai C4 at time of writing.
 
 # Building the CRKBD Keyboard
 Because the C4 has differently named pins from the Pro-Micros and the CRKBD board usually uses Pro-Micro pin names, depending on your specific board, I will be using the following notation in an attempt to keep it straight. Pins on the Bonsai C4 will be in parentheses. Pins on the CRKBD board will be in square brackets. I'll also try to keep the language used non-ambiguous. All steps except the Split Communications step need to be performed on both halves of the keyboard.
@@ -44,7 +42,7 @@ If your board doesn't have pin names on the silkscreen you can find the names I 
 <a href="../images/rgb_jumper.png"><img src="../images/rgb_jumper.png" width="50%"></a>
 </p>
 
-Most RGB LEDs, such as the WS2812 LEDs on the Keyhive Corne kit, require 5v on the data line<sup>[1](./c4conversion.md#Notes)</sup>. The corresponding pin on the C4 only supplies 3.3v, though, so you have to bring the correct voltage in from elsewhere on the C4. Pin (A10) supplies 5v so you'll need to solder a wire into the Bonsai (A10) pad and use it in the board's [D3] pad. I used an internal wire from a Cat5e cable because I could strip back just enough insulation for the solder joints but leave enough to ensure the cable didn't short out against something else. If you don't have any RGB LEDs on your board then you can skip this section, just leave both (A10) and (B7) unconnected.
+Most RGB LEDs, such as the WS2812 LEDs on the Keyhive Corne kit, require 5v on the data line<sup>[2](./c4conversion.md#Notes)</sup>. The corresponding pin on the C4 only supplies 3.3v, though, so you have to bring the correct voltage in from elsewhere on the C4. Pin (A10) supplies 5v so you'll need to solder a wire into the Bonsai (A10) pad and use it in the board's [D3] pad. I used an internal wire from a Cat5e cable because I could strip back just enough insulation for the solder joints but leave enough to ensure the cable didn't short out against something else. If you don't have any RGB LEDs on your board then you can skip this section, just leave both (A10) and (B7) unconnected.
 
 
 ## Board Power
@@ -133,7 +131,8 @@ You'll also want to confirm the correct resistance from pin to pin. If you use y
 If you have questions about this guide or have a unique situation and need some help, please feel free to reach out to me. I am Perrin on the customMK [Discord](https://discord.gg/mGTq3wRQdx) server, and the creator of the C4 is very helpful and responsive on Discord as well. The rest of the members on the Discord server are friendly and willing to help, too, so I'm sure you can find your answers there.
 
 # Notes
-<sup>1</sup>If your board uses different LEDs and you are 100% certain they require 3.3v then you don't need to jumper from the Bonsai C4's (A10), instead you can use Bonsai's (B7). You will have to edit the crkbd/c4/config.h file from `define RGB_DI_PIN A10` to `B7`.
+<sup>1</sup>According to QMK [documentation](https://docs.qmk.fm/#/feature_split_keyboard?id=i2c-wiring) 4.7Kohm is ideal for I2C but as long as total resistance is within 2.2K-10Kohm it should work. 4.7K and 10K resistors have been tested and found working with Bonsai C4 at time of writing.
+<sup>2</sup>If your board uses different LEDs and you are 100% certain they require 3.3v then you don't need to jumper from the Bonsai C4's (A10), instead you can use Bonsai's (B7). You will have to edit the crkbd/c4/config.h file from `define RGB_DI_PIN A10` to `B7`.
 # Credits
 None of this would be possible without the following:
 - [QMK Firmware](https://github.com/qmk/qmk_firmware), and all the developers that have contributed to build it into the firmware we have today. 
