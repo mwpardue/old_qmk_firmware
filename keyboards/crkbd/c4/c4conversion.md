@@ -132,6 +132,7 @@ If you have questions about this guide or have a unique situation and need some 
 
 # Notes
 <sup>1</sup>According to QMK [documentation](https://docs.qmk.fm/#/feature_split_keyboard?id=i2c-wiring) 4.7Kohm is ideal for I2C but as long as total resistance is within 2.2K-10Kohm it should work. 4.7K and 10K resistors have been tested and found working with Bonsai C4 at time of writing.
+
 <sup>2</sup>If your board uses different LEDs and you are 100% certain they require 3.3v then you don't need to jumper from the Bonsai C4's (A10), instead you can use Bonsai's (B7). You will have to edit the crkbd/c4/config.h file from `define RGB_DI_PIN A10` to `B7`.
 # Credits
 None of this would be possible without the following:
