@@ -6,6 +6,8 @@
 
 This guide will show you how to install a Bonsai C4 on a CRKBD v3 PCB. This has so far only been attempted on a Cherry MX version of the board, however it should be the same with the Choc version. The Bonsai C4 is an STM32F411 microcontroller designed by [customMK](https://shop.custommk.com) as a drop-in replacement for the Pro-Micro and it's clones. As QMK becomes more feature-rich and those features grow in complexity and size, so too do our flash memory requirements. The Bonsai C4 provides 512kB of program memory and 16MB of external flash storage, as opposed to the 28kB of QMK-usable storage on Pro-Micros, providing enough memory for all the QMK features you could hope for and hopefully making your board future-proof for some time to come.
 
+Please note that, while I am confident you'll have no problems if you follow this guide closely, I take no responsibility for any damage your board may suffer from attempting this installation. If you're unsure of how to do something, ask first.
+
 ## Requirements
 
 ### Tools Needed
@@ -23,6 +25,7 @@ This guide will show you how to install a Bonsai C4 on a CRKBD v3 PCB. This has 
 |4.7Kohm Resistor<sup>[1](./c4conversion.md#Notes)</sup>|5|If not using OLED screens then only 1 resistor is required.|
 |Wire|6|Used to "jumper" from one pin on MCU to another, I used wires from a Cat5e cable.|
 |CRKBD v3 PCB|2||
+|Taller OLED Standoffs|4|The added resistors can increase the controller's height and require modification OLED screens/covers|
 
 # Building the CRKBD Keyboard
 Because the C4 has differently named pins from the Pro-Micros and the CRKBD board usually uses Pro-Micro pin names, depending on your specific board, I will be using the following notation in an attempt to keep it straight. Pins on the Bonsai C4 will be in parentheses. Pins on the CRKBD board will be in square brackets. I'll also try to keep the language used non-ambiguous. All steps except the Split Communications step need to be performed on both halves of the keyboard.
@@ -70,11 +73,13 @@ To allow split communications to operate correctly you need to add a 4.7K pull-u
 The OLED screens are controlled via I2C, regardless of whether I2C is enabled elsewhere in the firmware or not. For I2C to work on STM32-based controllers you have to have a 4.7Kohm pull-up resistor on both I2C lines on both controllers. This means soldering a resistor from the Bonsai's (3.3V) pin to the Bonsai's (B9) pin and another from (3.3V) to (B6). Again, you can solder to the jumper pads which affords easier access.
 
 ## MCU Installation
-It may be easier to complete the resistor installation after the Bonsai C4 has been soldered/socketed to the CRKBD, but can be done in either order. Installation is no different than any other MCU, except that you won't have Bonsai pins (B7) or (3.3V) directly connected to the CRKBD board, unless your LEDs run on 3.3v as noted in the RGB LED section.
+It may be easier to complete the resistor installation after the Bonsai C4 has been soldered/socketed to the CRKBD, but can be done in either order. Installation is no different than any other MCU, except that you won't have Bonsai pins (B7) or (3.3V) directly connected to the CRKBD board. 
+
+Please note that the resistors soldered on top of the MCU adds a fair amount of height. On my board I had been using Pro-Micros with socketed OLED screens. After installing the C4 and resistors the legs on the OLED screens were no longer tall enough to sit comfortably on top of the controller and I had to de-solder the legs and install taller legs. I also had to have 12mm standoffs for the OLED covers instead of the standard 10mm that come with the KeyHive acrylic plates. It may be possible to install the resistors underneath the PCB by running (3.3V) to an unused pad, just like (A10) to [D3] for RGB data, thereby keeping a lower profile. This method of installation is untested and would require study of the [corne v3 PCB schematics](https://github.com/foostan/crkbd/tree/main/corne-cherry/pcb) and testing on your own. 
 
 ## Summary (TLDR)
 To summarize, when finished you should have the following:
-- A jumper wire from the Bonsai (A10) pin to the CRKBD's [D3] pad, if your RGB LEDs require 5v power. If 3.3v is enough for your LEDs then you can go direct from (B7) to [D3]. Your config.h must be altered accordingly.
+- A jumper wire from the Bonsai (A10) pin to the CRKBD's [D3] pad.
 - Bonsai (5V) pin connected to the CRKBD's [RAW] pad and jumpered under the PCB from the CRKBD's [RAW] pad to the CRKBD's [VCC] pad.
 - A 4.7K pull-up resistor from the Bonsai's (3.3V) pin to the Bonsai's (A15) pin on one MCU.
 - If using OLED screens, then you should have soldered a 4.7K pull-up resistor from the Bonsai's (3.3V) pin to Bonsai's (B6) pin and another from (3.3V) to (B9), on both controllers.
