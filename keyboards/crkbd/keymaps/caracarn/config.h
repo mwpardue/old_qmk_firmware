@@ -15,7 +15,7 @@
 #undef USE_I2C
 //#undef SSD1306OLED
 
-#define USE_SERIAL_PD2
+//#define USE_SERIAL_PD2
 
 #define FORCE_NKRO
 
