@@ -27,13 +27,14 @@ static layer_state_t locked_layers = 0;
 
     void layer_lock_timer_task(void) {
         const uint8_t layer = get_highest_layer(layer_state);
-        if ((is_layer_locked(layer)) && timer_expired(timer_read(), layer_lock_timer)) {
+        if (is_layer_locked(layer) && timer_elapsed(layer_lock_timer) > 30000) {
             layer_lock_invert(layer);
-            layer_lock_timer = 0;
+            layer_lock_timer = timer_read();
+            dprintf("Layer Lock Timer Task: %d\n", layer_lock_timer);
         }
     }
 
-    bool process_layer_lock_timer(uint16_t keycode, keyrecord_t* record, uint16_t lock_keycode) {
+    bool process_layer_lock_timer(uint16_t keycode, keyrecord_t* record) {
         //if (keycode != lock_keycode) {
             const uint8_t layer = get_highest_layer(layer_state);
             if (is_layer_locked(layer)) {
@@ -43,7 +44,7 @@ static layer_state_t locked_layers = 0;
                         //return true;
                     //default:
                     //if (is_layer_locked(layer)) {
-                    layer_lock_timer = (record->event.time + 10000) | 1; }
+                    layer_lock_timer = timer_read(); }
                     dprintf("Layer Lock Timer Update: %d\n", layer_lock_timer);
                     return true;
                     }
@@ -107,7 +108,7 @@ void layer_lock_invert(uint8_t layer) {
     }
 #endif  // NO_ACTION_ONESHOT
     layer_on(layer);
-    //layer_lock_timer = 0;
+    layer_lock_timer = timer_read();
     dprintf("LL Timer IOn: %d\n", layer_lock_timer);
   } else {  // Layer is being unlocked.
     layer_off(layer);
