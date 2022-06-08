@@ -17,9 +17,39 @@
 // https://getreuer.info/posts/keyboards/layer-lock
 
 #include "layer_lock.h"
+#include "definitions/keycodes.h"
 
 // The current lock state. The kth bit is on if layer k is locked.
 static layer_state_t locked_layers = 0;
+
+//#ifdef LAYER_LOCK_TIMER_ENABLE
+    static uint16_t layer_lock_timer = 0;
+
+    void layer_lock_timer_task(void) {
+        const uint8_t layer = get_highest_layer(layer_state);
+        if ((is_layer_locked(layer)) && timer_expired(timer_read(), layer_lock_timer)) {
+            layer_lock_invert(layer);
+        }
+    }
+
+    bool process_layer_lock_timer(uint16_t keycode, keyrecord_t* record, uint16_t lock_keycode) {
+        //if (keycode != lock_keycode) {
+            const uint8_t layer = get_highest_layer(layer_state);
+            if (is_layer_locked(layer)) {
+            if (record->event.pressed) {
+                //switch (keycode) {
+                    //case LLOCK:
+                        //return true;
+                    //default:
+                    //if (is_layer_locked(layer)) {
+                    layer_lock_timer = record->event.time + 10000; }
+                    dprintf("Layer Lock Timer Update: %d\n", layer_lock_timer);
+                    return true;
+                    }
+                    return true;
+                    }
+
+//#endif
 
 bool process_layer_lock(uint16_t keycode, keyrecord_t* record,
                         uint16_t lock_keycode) {
@@ -76,15 +106,20 @@ void layer_lock_invert(uint8_t layer) {
     }
 #endif  // NO_ACTION_ONESHOT
     layer_on(layer);
+    layer_lock_timer = 0;
+    dprintf("LL Timer IOn: %d\n", layer_lock_timer);
   } else {  // Layer is being unlocked.
     layer_off(layer);
+    dprintf("LL Timer IOff: %d\n", layer_lock_timer);
   }
   layer_lock_set_user(locked_layers ^= mask);
 }
 
 // Implement layer_lock_on/off by deferring to layer_lock_invert.
 void layer_lock_on(uint8_t layer) {
-  if (!is_layer_locked(layer)) { layer_lock_invert(layer); }
+  if (!is_layer_locked(layer)) {
+      layer_lock_invert(layer);
+      dprintf("Layer On Fn: %d\n", layer_lock_timer); }
 }
 
 void layer_lock_off(uint8_t layer) {

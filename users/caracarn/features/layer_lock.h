@@ -82,6 +82,9 @@ void layer_lock_invert(uint8_t layer);
 //   }
 void layer_lock_set_user(layer_state_t locked_layers);
 
+    bool process_layer_lock_timer(uint16_t keycode, keyrecord_t* record, uint16_t lock_keycode);
+    void layer_lock_timer_task(void);
+
 #ifdef __cplusplus
 }
 #endif
