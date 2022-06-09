@@ -38,9 +38,9 @@ void matrix_scan_user(void) {
     check_disable_capslock();
 #endif
 
-//#ifdef LAYER_LOCK_TIMER_ENABLE
+#if LAYER_LOCK_IDLE_TIMEOUT > 0
     layer_lock_timer_task();
-//#endif
+#endif
 
 #ifdef CAPSWORD_ENABLE
     caps_word_task();
@@ -110,7 +110,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef LAYER_LOCK_ENABLE
       if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
-        if (!process_layer_lock_timer(keycode, record)) {return true; }
+        #if LAYER_LOCK_IDLE_TIMEOUT > 0
+            if (!process_layer_lock_timer(keycode, record)) {return true; }
+        #endif
     #endif
 
 #ifdef SMART_CASE_ENABLE

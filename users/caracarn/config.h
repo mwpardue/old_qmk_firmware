@@ -63,5 +63,5 @@
 #endif
 
 #ifdef LAYER_LOCK_ENABLE
-            #define LAYER_LOCK_IDLE_TIMEOUT 30000
+    #define LAYER_LOCK_IDLE_TIMEOUT 30000
 #endif

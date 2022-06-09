@@ -17,17 +17,16 @@
 // https://getreuer.info/posts/keyboards/layer-lock
 
 #include "layer_lock.h"
-#include "definitions/keycodes.h"
 
 // The current lock state. The kth bit is on if layer k is locked.
+static layer_state_t locked_layers = 0;
+
 #if LAYER_LOCK_IDLE_TIMEOUT > 0
 #if LAYER_LOCK_IDLE_TIMEOUT < 100 || LAYER_LOCK_IDLE_TIMEOUT > 30000
 //Constrain timeout to a sensible range. With the 16-bit timer, the longest
 //representable timeout is 32768 ms, rounded here to 30000 ms = half a minute.
 #error "layer_lock: LAYER_LOCK_IDLE_TIMEOUT must be between 100 and 30000 ms"
 #endif
-
-static layer_state_t locked_layers = 0;
 
 //Layer Lock timer to disable layer lock after X seconds inactivity
 
@@ -119,9 +118,7 @@ void layer_lock_invert(uint8_t layer) {
 
 // Implement layer_lock_on/off by deferring to layer_lock_invert.
 void layer_lock_on(uint8_t layer) {
-  if (!is_layer_locked(layer)) {
-      layer_lock_invert(layer);
-      }
+  if (!is_layer_locked(layer)) {layer_lock_invert(layer); }
 }
 
 void layer_lock_off(uint8_t layer) {
