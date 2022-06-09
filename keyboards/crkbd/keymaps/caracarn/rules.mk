@@ -3,7 +3,7 @@
 RGBLIGHT_ENABLE = no       # Enable keyboard RGB underglow
 AUDIO_ENABLE = no          # Audio output
 MUSIC_ENABLE = no
-CONSOLE_ENABLE = no
+CONSOLE_ENABLE = yes
 COMMAND_ENABLE = no
 BACKLIGHT_ENABLE = no
 SWAP_HANDS_ENABLE = no

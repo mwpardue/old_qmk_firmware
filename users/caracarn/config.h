@@ -61,3 +61,7 @@
     #define MOUSEKEY_WHEEL_MAX_SPEED 20
     #define MOUSEKEY_WHEEL_TIME_TO_MAX 10
 #endif
+
+#ifdef LAYER_LOCK_ENABLE
+            #define LAYER_LOCK_IDLE_TIMEOUT 30000
+#endif
