@@ -21,6 +21,6 @@ OCEAN_DREAM_ENABLE = yes
 LUNA_ENABLE = no # disabled so travis build succeeds
 
 # if firmware size over limit, try this option
-LTO_ENABLE = yes
+CFLAGS += -flto
 
 WPM_ENABLE = yes
